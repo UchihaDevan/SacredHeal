@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-spiritual-dark: #07070f;
+  --color-spiritual-navy: #0d0d21;
+  --color-spiritual-indigo: #1b1b3a;
+  --color-spiritual-gold: #c7a75c;
+  --color-spiritual-gold-light: #e5c98d;
+  --color-spiritual-purple: #4c1d95;
+  --color-spiritual-emerald: #064e3b;
+  
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Estilos de Base */
+@layer base {
+  body {
+    @apply bg-spiritual-dark text-slate-200 font-sans min-h-screen overflow-x-hidden;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(27, 27, 58, 0.3) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(76, 29, 149, 0.15) 0px, transparent 50%),
+      radial-gradient(at 50% 50%, rgba(13, 13, 33, 0.8) 0px, transparent 100%);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif text-slate-100;
+  }
+}
+
+/* Classes Utilitárias do Design System (Tailwind v4 @utility) */
+@utility glass-effect {
+  background: rgba(27, 27, 58, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@utility glass-effect-hover {
+  @apply transition-all duration-300;
+  &:hover {
+    background: rgba(27, 27, 58, 0.55);
+    border-color: rgba(199, 167, 92, 0.25);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@utility glass-effect-dark {
+  background: rgba(7, 7, 15, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+@utility gold-text-gradient {
+  background: linear-gradient(135deg, #e5c98d 0%, #c7a75c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility gold-bg-gradient {
+  background: linear-gradient(135deg, #e5c98d 0%, #c7a75c 100%);
+}
+
+@utility spiritual-card {
+  @apply glass-effect rounded-2xl p-6 transition-all duration-300 relative overflow-hidden;
+}
+
+/* Personalização da barra de rolagem */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-spiritual-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-spiritual-indigo rounded-full hover:bg-spiritual-gold/50 transition-colors;
+}
+
+/* Auxiliares da animação das ondas de som do player */
+.sound-bar {
+  @apply w-1 bg-spiritual-gold rounded-full transition-all duration-150;
+  height: 4px;
+}
