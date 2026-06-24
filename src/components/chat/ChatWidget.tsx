@@ -43,16 +43,16 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onNavigateToTab }) => {
         <div className="pointer-events-auto max-w-[240px] bg-slate-900/95 dark:bg-spiritual-navy/95 text-slate-100 p-3.5 rounded-2xl border border-spiritual-gold/30 shadow-2xl animate-in slide-in-from-bottom-2 duration-300 relative flex items-start gap-2.5">
           <div className="flex-1">
             <span className="text-[9px] font-bold text-spiritual-gold uppercase tracking-wider block mb-0.5">
-              Mensagem do Pastor Caleb
+              Message from Pastor Caleb
             </span>
             <p className="text-[11px] leading-relaxed text-slate-300">
-              "Precisa de um conselho bíblico ou oração especial hoje? Fale comigo!"
+              "Need biblical advice or a special prayer today? Talk to me!"
             </p>
           </div>
           <button
             onClick={handleClosePopup}
             className="p-0.5 rounded-md hover:bg-white/10 text-slate-400 hover:text-slate-200 transition-colors shrink-0"
-            aria-label="Fechar pop-up"
+            aria-label="Close pop-up"
           >
             <X className="w-3 h-3" />
           </button>
@@ -68,7 +68,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onNavigateToTab }) => {
         className={`pointer-events-auto p-4 rounded-full gold-bg-gradient text-slate-900 shadow-[0_10px_25px_rgba(199,167,92,0.4)] transition-all hover:scale-110 active:scale-95 relative border border-spiritual-gold-light/20 ${
           bounce ? 'animate-bounce' : ''
         }`}
-        title="Falar com o Pastor Caleb"
+        title="Talk with Pastor Caleb"
       >
         <MessageSquare className="w-6 h-6 fill-slate-950" />
         

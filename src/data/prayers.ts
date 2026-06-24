@@ -10,28 +10,28 @@ export interface PrayerData {
 export const prayers: PrayerData[] = [
   {
     id: 'oracao-libertacao-1',
-    name: 'Oração de Libertação e Escudo Protetor',
-    text: `Senhor Deus, Pai Todo-Poderoso, Criador dos Céus e da Terra.
-Entro em Tua presença neste momento para rogar Teu escudo protetor sobre a minha vida, minha casa e todos os meus familiares.
-Pelo poder do nome de Jesus Cristo, eu repreendo toda força contrária, todo dardo inflamado do inimigo e toda palavra de maldição lançada contra meu lar.
-Que Teus santos anjos acampem ao meu redor. Cobre-me com Teu sangue precioso e concede-me a libertação de toda amarra mental, física e espiritual.
-Decreto que a paz do Senhor Jesus habita neste recinto hoje e para sempre.
-Amém.`,
-    instructions: 'Recomenda-se recitar esta prece ao amanhecer, em uma postura de pé, com as mãos voltadas para cima, visualizando a armadura de Deus cobrindo seu ser.',
-    recommendedTime: 'Manhã (ao acordar)',
-    edition: '2023 - 1ª Edição'
+    name: 'Deliverance Prayer and Protective Shield',
+    text: `Lord God, Almighty Father, Creator of Heaven and Earth.
+I enter Your presence at this moment to pray for Your protective shield over my life, my home, and all my family members.
+By the power of the name of Jesus Christ, I rebuke every opposing force, every fiery dart of the enemy, and every word of curse cast against my home.
+May Your holy angels encamp around me. Cover me with Your precious blood and grant me deliverance from all mental, physical, and spiritual chains.
+I decree that the peace of the Lord Jesus dwells in this place today and forever.
+Amen.`,
+    instructions: 'It is recommended to recite this prayer at dawn, standing up, with hands turned upward, visualizing the armor of God covering your being.',
+    recommendedTime: 'Morning (upon waking)',
+    edition: '2023 - 1st Edition'
   },
   {
     id: 'oracao-prosperidade-2',
-    name: 'Oração de Provisão e Bênção Familiar',
-    text: `Pai Celestial, Tu que multiplicas os pães e peixes e não deixas faltar o sustento ao Teu povo.
-Olha para as nossas necessidades financeiras e profissionais. Abre as portas que estão fechadas, derrama ideias criativas de sucesso e atrai oportunidades de prosperidade legítima.
-Repreendo todo espírito de escassez e miséria da minha linhagem familiar.
-Declaro que a minha casa é um celeiro cheio de bênçãos e que teremos o suficiente para viver com dignidade e transbordar na vida dos necessitados.
-Abençoa o trabalho das nossas mãos e purifica as nossas intenções.
-Em nome de Jesus Cristo. Amém.`,
-    instructions: 'Recomenda-se recitar esta prece à noite, antes de dormir, mantendo a mente calma e focada no sentimento de gratidão e abundância divina.',
-    recommendedTime: 'Noite (antes de dormir)',
-    edition: '2023 - Segunda Edição'
+    name: 'Provision and Family Blessing Prayer',
+    text: `Heavenly Father, You who multiply the loaves and fish and do not let Your people lack sustenance.
+Look upon our financial and professional needs. Open the doors that are closed, pour out creative ideas for success, and attract opportunities of legitimate prosperity.
+I rebuke every spirit of scarcity and misery from my family lineage.
+I declare that my house is a storehouse full of blessings and that we will have enough to live with dignity and overflow into the lives of those in need.
+Bless the work of our hands and purify our intentions.
+In the name of Jesus Christ. Amen.`,
+    instructions: 'It is recommended to recite this prayer at night, before sleeping, keeping the mind calm and focused on the feeling of gratitude and divine abundance.',
+    recommendedTime: 'Night (before sleeping)',
+    edition: '2023 - Second Edition'
   }
 ];

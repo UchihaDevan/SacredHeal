@@ -17,12 +17,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onSupportOpen
 }) => {
   const menuItems = [
-    { id: 'home', label: 'Início', icon: Home },
-    { id: 'main', label: 'Cofre de Frequências', icon: Radio },
-    { id: 'premium', label: 'Sintonizações Premium', icon: Sparkles },
-    { id: 'bonus', label: 'Bônus & Orações', icon: Gift },
+    { id: 'home', label: 'Home', icon: Home },
+    { id: 'main', label: 'Frequencies Vault', icon: Radio },
+    { id: 'premium', label: 'Premium Sintonizations', icon: Sparkles },
+    { id: 'bonus', label: 'Bonus & Prayers', icon: Gift },
     { id: 'chat', label: 'Pastor Caleb', icon: MessageSquare },
-    { id: 'challenge', label: 'Desafio Sagrado', icon: Award },
+    { id: 'challenge', label: 'Sacred Challenge', icon: Award },
   ];
 
   const handleNavClick = (tabId: string) => {
@@ -61,7 +61,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* Atalho de Frase Inspiradora no topo do menu */}
           <div className="hidden md:block p-4 rounded-xl bg-slate-200/50 dark:bg-spiritual-indigo/30 border border-slate-300/30 dark:border-white/5">
             <p className="text-[11px] text-slate-600 dark:text-slate-400 italic text-center">
-              "A fé é a certeza daquilo que esperamos e a prova das coisas que não vemos."
+              "Faith is the assurance of things hoped for, the conviction of things not seen."
             </p>
           </div>
 
@@ -98,7 +98,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-black/5 dark:hover:bg-white/5 transition-all border border-transparent"
           >
             <HelpCircle className="w-5 h-5 text-slate-500 dark:text-slate-400" />
-            <span>Suporte Técnico</span>
+            <span>Technical Support</span>
           </button>
         </div>
       </aside>

@@ -119,7 +119,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
                   className={`p-2 rounded-full hover:bg-white/5 transition-colors ${
                     isFavorite ? 'text-rose-500' : 'text-slate-400'
                   }`}
-                  title={isFavorite ? 'Remover dos favoritos' : 'Favoritar'}
+                  title={isFavorite ? 'Remove from favorites' : 'Favorite'}
                 >
                   <Heart className={`w-5 h-5 ${isFavorite ? 'fill-rose-500' : ''}`} />
                 </button>
@@ -146,7 +146,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
             {product.benefits && product.benefits.length > 0 && (
               <div className="space-y-2">
                 <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                  Benefícios esperados:
+                  Expected benefits:
                 </h4>
                 <ul className="space-y-1.5">
                   {product.benefits.map((benefit, i) => (
@@ -164,26 +164,26 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
               <div className="p-4 rounded-2xl bg-spiritual-indigo/40 border border-white/5 space-y-4">
                 <div className="flex items-center gap-2 text-xs font-semibold text-amber-400">
                   <Clock className="w-4 h-4" />
-                  <span>Contagem Regressiva para o Lançamento</span>
+                  <span>Countdown to Launch</span>
                 </div>
                 
                 {/* Grid Cronômetro */}
                 <div className="grid grid-cols-4 gap-2 text-center">
                   <div className="bg-spiritual-dark/60 p-2.5 rounded-xl border border-white/5">
                     <span className="block text-lg font-bold text-slate-100">{timeLeft.days}</span>
-                    <span className="text-[9px] text-slate-500 uppercase tracking-widest">Dias</span>
+                    <span className="text-[9px] text-slate-500 uppercase tracking-widest">Days</span>
                   </div>
                   <div className="bg-spiritual-dark/60 p-2.5 rounded-xl border border-white/5">
                     <span className="block text-lg font-bold text-slate-100">{timeLeft.hours}</span>
-                    <span className="text-[9px] text-slate-500 uppercase tracking-widest">Horas</span>
+                    <span className="text-[9px] text-slate-500 uppercase tracking-widest">Hours</span>
                   </div>
                   <div className="bg-spiritual-dark/60 p-2.5 rounded-xl border border-white/5">
                     <span className="block text-lg font-bold text-slate-100">{timeLeft.minutes}</span>
-                    <span className="text-[9px] text-slate-500 uppercase tracking-widest">Min</span>
+                    <span className="text-[9px] text-slate-500 uppercase tracking-widest">Mins</span>
                   </div>
                   <div className="bg-spiritual-dark/60 p-2.5 rounded-xl border border-white/5">
                     <span className="block text-lg font-bold text-slate-100">{timeLeft.seconds}</span>
-                    <span className="text-[9px] text-slate-500 uppercase tracking-widest">Seg</span>
+                    <span className="text-[9px] text-slate-500 uppercase tracking-widest">Secs</span>
                   </div>
                 </div>
 
@@ -191,7 +191,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
                 {emailSaved ? (
                   <div className="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-500/10 p-3 rounded-xl border border-emerald-500/25">
                     <CheckCircle className="w-4 h-4 shrink-0" />
-                    <span>Inscrito na lista de espera! Enviaremos avisos de lançamento.</span>
+                    <span>Subscribed to waitlist! We will send launch notices.</span>
                   </div>
                 ) : (
                   <form onSubmit={handleEmailSubmit} className="flex gap-2">
@@ -200,7 +200,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Seu melhor e-mail"
+                      placeholder="Your best email"
                       className="flex-1 px-3 py-2 rounded-xl bg-spiritual-dark/40 border border-white/5 text-slate-200 placeholder-slate-500 text-xs focus:outline-none focus:border-spiritual-gold/40"
                     />
                     <button
@@ -208,7 +208,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
                       className="px-4 py-2 rounded-xl gold-bg-gradient text-slate-900 text-xs font-bold flex items-center gap-1.5 hover:opacity-90 transition-opacity"
                     >
                       <Mail className="w-3.5 h-3.5" />
-                      <span>Inscrever</span>
+                      <span>Subscribe</span>
                     </button>
                   </form>
                 )}
@@ -224,7 +224,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
                 className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl gold-bg-gradient text-slate-900 font-bold hover:scale-[1.01] active:scale-95 transition-all shadow-[0_4px_15px_rgba(199,167,92,0.3)]"
               >
                 <Play className="w-4 h-4 fill-slate-900" />
-                <span>Tocar Frequência</span>
+                <span>Play Frequency</span>
               </button>
             ) : product.id === 'chat-pastor' ? (
               <button
@@ -234,7 +234,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
                 }}
                 className="flex-1 py-3 rounded-xl gold-bg-gradient text-slate-900 font-bold hover:opacity-90 transition-opacity text-center"
               >
-                Iniciar Chat Privado
+                Start Private Chat
               </button>
             ) : product.id === 'sacred-challenge' ? (
               <button
@@ -244,14 +244,14 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
                 }}
                 className="flex-1 py-3 rounded-xl gold-bg-gradient text-slate-900 font-bold hover:opacity-90 transition-opacity text-center"
               >
-                Ver Meu Desafio
+                View My Challenge
               </button>
             ) : (
               <button
                 onClick={onClose}
                 className="flex-1 py-3 rounded-xl bg-white/5 border border-white/10 font-semibold hover:bg-white/10 transition-colors text-center text-slate-300"
               >
-                Fechar Detalhes
+                Close Details
               </button>
             )}
           </div>

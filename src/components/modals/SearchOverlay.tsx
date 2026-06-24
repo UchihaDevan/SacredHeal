@@ -87,7 +87,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose }) => {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="O que você precisa sintonizar hoje? (ex: cura, paz, caleb, 528hz...)"
+            placeholder="What do you need to tune in to today? (e.g., healing, peace, caleb, 528hz...)"
             className="flex-1 bg-transparent text-slate-100 placeholder-slate-400 outline-none text-base border-none focus:ring-0"
           />
           <button
@@ -102,11 +102,11 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose }) => {
         <div className="max-h-[60vh] overflow-y-auto p-4 space-y-6">
           {query.trim() === '' ? (
             <div className="py-8 text-center text-slate-400 text-sm">
-              Comece a digitar para encontrar frequências de cura, orações ungidas, versículos e muito mais.
+              Start typing to find healing frequencies, anointed prayers, verses, and more.
             </div>
           ) : results.length === 0 ? (
             <div className="py-8 text-center text-slate-400 text-sm">
-              Nenhum resultado encontrado para "{query}". Tente buscar por termos como "cura", "prosperidade", "Caleb", "oração" ou "Hz".
+              No results found for "{query}". Try searching for terms like "healing", "prosperity", "Caleb", "prayer" or "Hz".
             </div>
           ) : (
             <>
@@ -114,7 +114,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose }) => {
               {mainResults.length > 0 && (
                 <div>
                   <h3 className="text-xs font-semibold text-spiritual-gold uppercase tracking-widest px-3 mb-2">
-                    Frequências & Sabedoria (Main Content)
+                    Frequencies & Wisdom (Main Content)
                   </h3>
                   <div className="space-y-1">
                     {mainResults.map((item) => (
@@ -128,7 +128,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose }) => {
               {premiumResults.length > 0 && (
                 <div>
                   <h3 className="text-xs font-semibold text-purple-400 uppercase tracking-widest px-3 mb-2">
-                    Sintonizações Premium
+                    Premium Sintonizations
                   </h3>
                   <div className="space-y-1">
                     {premiumResults.map((item) => (
@@ -142,7 +142,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose }) => {
               {bonusResults.length > 0 && (
                 <div>
                   <h3 className="text-xs font-semibold text-emerald-400 uppercase tracking-widest px-3 mb-2">
-                    Bônus & Orações
+                    Bonus & Prayers
                   </h3>
                   <div className="space-y-1">
                     {bonusResults.map((item) => (

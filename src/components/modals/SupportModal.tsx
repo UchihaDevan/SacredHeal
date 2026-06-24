@@ -49,7 +49,7 @@ export const SupportModal: React.FC<SupportModalProps> = ({ onClose }) => {
         {/* Header do Modal */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-white/5">
           <h2 className="text-lg font-serif font-bold text-slate-100">
-            Suporte Técnico
+            Technical Support
           </h2>
           <button
             onClick={onClose}
@@ -63,39 +63,39 @@ export const SupportModal: React.FC<SupportModalProps> = ({ onClose }) => {
         {status === 'success' ? (
           <div className="p-8 text-center flex flex-col items-center space-y-4">
             <CheckCircle className="w-16 h-16 text-emerald-400 animate-bounce" />
-            <h3 className="text-xl font-serif font-bold text-slate-100">Mensagem Enviada!</h3>
+            <h3 className="text-xl font-serif font-bold text-slate-100">Message Sent!</h3>
             <p className="text-sm text-slate-400">
-              Sua mensagem foi entregue com sucesso ao suporte técnico. Responderemos em até 24 horas no e-mail informado.
+              Your message was successfully delivered to technical support. We will respond within 24 hours at the email provided.
             </p>
             <button
               onClick={onClose}
               className="mt-4 px-6 py-2 rounded-full gold-bg-gradient text-slate-900 font-semibold hover:opacity-90 transition-opacity"
             >
-              Concluir
+              Done
             </button>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-6 space-y-4">
             <p className="text-xs text-slate-400 leading-relaxed">
-              Teve problemas com a reprodução das frequências ou deseja esclarecer dúvidas sobre os planos? Envie-nos uma mensagem.
+              Had trouble playing frequencies or want to clarify doubts about plans? Send us a message.
             </p>
 
             {status === 'error' && (
               <div className="p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-xs text-rose-300">
-                Por favor, preencha todos os campos corretamente.
+                Please fill in all fields correctly.
               </div>
             )}
 
             <div>
               <label htmlFor="support-name" className="block text-xs font-semibold text-slate-400 mb-1">
-                Seu Nome
+                Your Name
               </label>
               <input
                 id="support-name"
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Ex: Maria Silva"
+                placeholder="e.g., Maria Silva"
                 className="w-full px-4 py-2.5 rounded-xl bg-spiritual-indigo/40 border border-white/5 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-spiritual-gold/40 transition-colors"
                 required
               />
@@ -103,14 +103,14 @@ export const SupportModal: React.FC<SupportModalProps> = ({ onClose }) => {
 
             <div>
               <label htmlFor="support-email" className="block text-xs font-semibold text-slate-400 mb-1">
-                E-mail de Contato
+                Contact Email
               </label>
               <input
                 id="support-email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Ex: maria@email.com"
+                placeholder="e.g., maria@email.com"
                 className="w-full px-4 py-2.5 rounded-xl bg-spiritual-indigo/40 border border-white/5 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-spiritual-gold/40 transition-colors"
                 required
               />
@@ -118,13 +118,13 @@ export const SupportModal: React.FC<SupportModalProps> = ({ onClose }) => {
 
             <div>
               <label htmlFor="support-message" className="block text-xs font-semibold text-slate-400 mb-1">
-                Descreva o Problema ou Dúvida
+                Describe the Problem or Question
               </label>
               <textarea
                 id="support-message"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                placeholder="Como podemos te ajudar hoje?"
+                placeholder="How can we help you today?"
                 rows={4}
                 className="w-full px-4 py-2.5 rounded-xl bg-spiritual-indigo/40 border border-white/5 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-spiritual-gold/40 transition-colors resize-none"
                 required
@@ -137,11 +137,11 @@ export const SupportModal: React.FC<SupportModalProps> = ({ onClose }) => {
               className="w-full flex items-center justify-center gap-2 py-3 mt-2 rounded-xl gold-bg-gradient text-slate-900 font-semibold hover:opacity-95 transition-opacity disabled:opacity-50"
             >
               {status === 'loading' ? (
-                <span>Enviando...</span>
+                <span>Sending...</span>
               ) : (
                 <>
                   <Send className="w-4 h-4" />
-                  <span>Enviar Mensagem</span>
+                  <span>Send Message</span>
                 </>
               )}
             </button>

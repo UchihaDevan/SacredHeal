@@ -20,14 +20,14 @@ export const Premium: React.FC<PremiumProps> = ({ onOpenDetails, onNavigateToTab
         <div className="flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-purple-400" />
           <span className="text-xs font-semibold text-purple-400 uppercase tracking-widest">
-            Portal Exclusivo
+            Exclusive Portal
           </span>
         </div>
         <h1 className="text-3xl md:text-4xl font-serif font-bold text-slate-100">
-          Sintonizações <span className="text-purple-400 font-serif">Premium</span>
+          Premium <span className="text-purple-400 font-serif">Sintonizations</span>
         </h1>
         <p className="text-slate-400 text-sm max-w-xl leading-relaxed">
-          Tenha acesso aos métodos mais profundos e aceleradores de frequências criados para o seu bem-estar completo.
+          Access the deepest methods and frequency accelerators created for your complete well-being.
         </p>
       </div>
 
@@ -35,9 +35,9 @@ export const Premium: React.FC<PremiumProps> = ({ onOpenDetails, onNavigateToTab
       <div className="p-5 rounded-2xl bg-purple-500/10 border border-purple-500/25 flex items-start gap-4">
         <ShieldAlert className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
         <div className="space-y-1">
-          <h4 className="text-sm font-bold text-purple-200">Acesso Premium Ativo</h4>
+          <h4 className="text-sm font-bold text-purple-200">Active Premium Access</h4>
           <p className="text-xs text-purple-300/80 leading-relaxed">
-            Como membro consagrado, você tem acesso irrestrito a todos os aceleradores sonoros, playlists turbo de meditação e aconselhamento direto com o bot simulado do Pastor Caleb.
+            As a consecrated member, you have unrestricted access to all sound accelerators, turbo meditation playlists, and direct counseling with the simulated Pastor Caleb bot.
           </p>
         </div>
       </div>

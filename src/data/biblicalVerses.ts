@@ -11,23 +11,23 @@ export interface VerseData {
 export const dailyVerses: Omit<VerseData, 'book' | 'tags'>[] = [
   {
     id: 'dv-1',
-    verse: 'Porque sou eu que conheço os planos que tenho para vocês, diz o Senhor, planos de prosperidade e não de mal, para dar a vocês um futuro e uma esperança.',
-    reference: 'Jeremias 29:11',
-    interpretation: 'Esta passagem nos garante que a vontade de Deus para nossa vida é de bondade e abundância. Mesmo que as circunstâncias de hoje pareçam incertas, o amanhã divino é seguro e próspero.',
+    verse: 'For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope.',
+    reference: 'Jeremiah 29:11',
+    interpretation: "This passage guarantees us that God's will for our lives is goodness and abundance. Even if today's circumstances seem uncertain, the divine tomorrow is safe and prosperous.",
     imageUrl: 'https://images.unsplash.com/photo-1504052434569-70ad58565b90?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'dv-2',
-    verse: 'O Senhor é o meu pastor; de nada terei falta.',
-    reference: 'Salmos 23:1',
-    interpretation: 'Um lembrete de confiança plena de que nosso Criador supre todas as nossas frentes: saúde, sustento material e proteção mental.',
+    verse: 'The Lord is my shepherd; I shall not want.',
+    reference: 'Psalms 23:1',
+    interpretation: 'A reminder of full confidence that our Creator supplies all our fronts: health, material support, and mental protection.',
     imageUrl: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'dv-3',
-    verse: 'Tudo posso naquele que me fortalece.',
-    reference: 'Filipenses 4:13',
-    interpretation: 'Nossa força não advém da nossa própria capacidade limitada, mas da união espiritual inabalável com o Senhor que habita em nós.',
+    verse: 'I can do all things through him who strengthens me.',
+    reference: 'Philippians 4:13',
+    interpretation: 'Our strength does not come from our own limited capacity, but from the unshakeable spiritual union with the Lord who dwells in us.',
     imageUrl: 'https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=600&q=80'
   }
 ];
@@ -35,29 +35,29 @@ export const dailyVerses: Omit<VerseData, 'book' | 'tags'>[] = [
 export const biblicalWisdom: VerseData[] = [
   {
     id: 'bw-1',
-    verse: 'Confie no Senhor de todo o seu coração e não se apóie em seu próprio entendimento; reconheça o Senhor em todos os seus caminhos, e ele endireitará as suas veredas.',
-    reference: 'Provérbios 3:5-6',
-    interpretation: 'A sabedoria humana é falha e baseada nas aparências. A verdadeira inteligência consiste em confiar nos caminhos de Deus, silenciando o medo lógico.',
-    book: 'Provérbios',
-    tags: ['Sabedoria', 'Confiança', 'Orientação'],
+    verse: 'Trust in the Lord with all your heart, and do not lean on your own understanding. In all your ways acknowledge him, and he will make straight your paths.',
+    reference: 'Proverbs 3:5-6',
+    interpretation: "Human wisdom is flawed and based on appearances. True intelligence consists of trusting God's ways, silencing logical fear.",
+    book: 'Proverbs',
+    tags: ['Wisdom', 'Trust', 'Guidance'],
     imageUrl: 'https://images.unsplash.com/photo-1438210159938-e2794098ea86?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'bw-2',
-    verse: 'Não andem ansiosos por coisa alguma, mas em tudo, pela oração e súplicas, e com ação de graças, apresentem seus pedidos a Deus.',
-    reference: 'Filipenses 4:6',
-    interpretation: 'A ansiedade bloqueia nossa sensibilidade espiritual. Substitua a preocupação pela oração sincera e por pensamentos de gratidão.',
-    book: 'Filipenses',
-    tags: ['Ansiedade', 'Paz', 'Oração'],
+    verse: 'Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God.',
+    reference: 'Philippians 4:6',
+    interpretation: 'Anxiety blocks our spiritual sensitivity. Replace worry with sincere prayer and thoughts of gratitude.',
+    book: 'Philippians',
+    tags: ['Anxiety', 'Peace', 'Prayer'],
     imageUrl: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'bw-3',
-    verse: 'O amor é paciente, o amor é bondoso. Não inveja, não se vangloria, não se orgulha. Não maltrata, não procura seus interesses, não se ira facilmente, não guarda rancor.',
-    reference: '1 Coríntios 13:4-5',
-    interpretation: 'A maior força de cura que existe no universo é o amor divino. Praticar o amor reconstrói nossa imunidade biológica e atrai abundância e harmonia nos lares.',
-    book: '1 Coríntios',
-    tags: ['Amor', 'Relacionamentos', 'Família'],
+    verse: 'Love is patient and kind; love does not envy or boast; it is not arrogant. It is not rude. It does not insist on its own way; it is not irritable or resentful.',
+    reference: '1 Corinthians 13:4-5',
+    interpretation: 'The greatest healing force in the universe is divine love. Practicing love rebuilds our biological immunity and attracts abundance and harmony in our homes.',
+    book: '1 Corinthians',
+    tags: ['Love', 'Relationships', 'Family'],
     imageUrl: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80'
   }
 ];

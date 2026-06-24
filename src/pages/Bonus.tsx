@@ -17,7 +17,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
   
   // Estados de busca local
   const [wisdomQuery, setWisdomQuery] = useState('');
-  const [testimonialCategory, setTestimonialCategory] = useState<string>('Todos');
+  const [testimonialCategory, setTestimonialCategory] = useState<string>('All');
   const [recitedPrayers, setRecitedPrayers] = useState<string[]>([]);
 
   // Filtrar sabedoria bíblica
@@ -32,7 +32,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
   });
 
   // Filtrar depoimentos
-  const filteredTestimonials = testimonialCategory === 'Todos'
+  const filteredTestimonials = testimonialCategory === 'All'
     ? testimonials
     : testimonials.filter((t) => t.category === testimonialCategory);
 
@@ -52,14 +52,14 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
         <div className="flex items-center gap-2">
           <Gift className="w-5 h-5 text-emerald-400" />
           <span className="text-xs font-semibold text-emerald-400 uppercase tracking-widest">
-            Bênçãos Adicionais
+            Additional Blessings
           </span>
         </div>
         <h1 className="text-3xl md:text-4xl font-serif font-bold text-slate-100">
-          Recursos de <span className="text-emerald-400 font-serif">Bônus & Edificação</span>
+          Resources of <span className="text-emerald-400 font-serif">Bonus & Edification</span>
         </h1>
         <p className="text-slate-400 text-sm max-w-xl leading-relaxed">
-          Explore as orações ungidas, oráculos de fé bíblicos e testemunhos de libertação alcançados pela fé.
+          Explore anointed prayers, biblical faith oracles, and testimonies of deliverance achieved through faith.
         </p>
       </div>
 
@@ -73,7 +73,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
               : 'border-transparent text-slate-400 hover:text-slate-200'
           }`}
         >
-          Orações Ungidas
+          Anointed Prayers
         </button>
         <button
           onClick={() => setSubTab('wisdom')}
@@ -83,7 +83,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
               : 'border-transparent text-slate-400 hover:text-slate-200'
           }`}
         >
-          Estudos & Sabedoria
+          Studies & Wisdom
         </button>
         <button
           onClick={() => setSubTab('testimonials')}
@@ -93,7 +93,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
               : 'border-transparent text-slate-400 hover:text-slate-200'
           }`}
         >
-          Depoimentos de Fé
+          Testimonies of Faith
         </button>
         <button
           onClick={() => setSubTab('downloads')}
@@ -149,7 +149,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
 
                   <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
                     <span className="text-[10px] text-slate-500 font-medium">
-                      {isRecited ? 'Recitado Hoje' : 'Consagre-se agora'}
+                      {isRecited ? 'Recited Today' : 'Consecrate now'}
                     </span>
                     <button
                       onClick={() => toggleRecited(prayer.id)}
@@ -160,7 +160,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
                       }`}
                     >
                       {isRecited && <CheckCircle className="w-3.5 h-3.5" />}
-                      <span>{isRecited ? 'Concluído' : 'Marcar como Recitada'}</span>
+                      <span>{isRecited ? 'Completed' : 'Mark as Recited'}</span>
                     </button>
                   </div>
                 </div>
@@ -180,7 +180,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
               type="text"
               value={wisdomQuery}
               onChange={(e) => setWisdomQuery(e.target.value)}
-              placeholder="Buscar provérbios ou livros bíblicos..."
+              placeholder="Search proverbs or biblical books..."
               className="flex-1 bg-transparent text-sm text-slate-100 placeholder-slate-500 outline-none"
             />
           </div>
@@ -207,7 +207,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
                   </blockquote>
 
                   <p className="text-[11px] text-slate-400 leading-relaxed mt-4 pt-3 border-t border-white/5">
-                    <span className="font-semibold text-slate-300">Explicação:</span> {item.interpretation}
+                    <span className="font-semibold text-slate-300">Explanation:</span> {item.interpretation}
                   </p>
                 </div>
 
@@ -232,7 +232,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
         <div className="space-y-6">
           {/* Filtro de Categoria */}
           <div className="flex gap-2 scrollbar-none overflow-x-auto">
-            {['Todos', 'Cura Física', 'Prosperidade', 'Paz Mental'].map((cat) => (
+            {['All', 'Physical Healing', 'Prosperity', 'Mental Peace'].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setTestimonialCategory(cat)}

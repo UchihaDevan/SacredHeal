@@ -18,7 +18,7 @@ export const useChatStore = create<ChatStoreState>()(
         {
           id: 'welcome',
           sender: 'pastor',
-          message: 'Graça e paz, meu irmão! Sou o Pastor Caleb. Estou aqui para ouvir você, oferecer aconselhamento bíblico e orar pelas suas necessidades. Como posso ajudar seu coração hoje?',
+          message: 'Grace and peace, my friend! I am Pastor Caleb. I am here to listen to you, offer biblical counseling, and pray for your needs. How can I help your heart today?',
           timestamp: new Date().toISOString()
         }
       ],
@@ -93,7 +93,7 @@ export const useChatStore = create<ChatStoreState>()(
             {
               id: 'welcome',
               sender: 'pastor',
-              message: 'Graça e paz, meu irmão! Sou o Pastor Caleb. Como posso ajudar seu coração hoje?',
+              message: 'Grace and peace, my friend! I am Pastor Caleb. How can I help your heart today?',
               timestamp: new Date().toISOString()
             }
           ]

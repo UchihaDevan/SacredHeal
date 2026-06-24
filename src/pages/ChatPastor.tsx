@@ -25,10 +25,10 @@ export const ChatPastor: React.FC = () => {
   };
 
   const suggestions = [
-    'Estou me sentindo triste hoje',
-    'Preciso de uma oração por minha saúde',
-    'Como ter paz em meio à ansiedade?',
-    'Estou passando por uma crise financeira',
+    'I am feeling sad today',
+    'I need a prayer for my health',
+    'How to have peace amidst anxiety?',
+    'I am going through a financial crisis',
   ];
 
   return (
@@ -44,7 +44,7 @@ export const ChatPastor: React.FC = () => {
           <div>
             <h2 className="text-sm font-bold text-slate-100 font-serif">Pastor Caleb</h2>
             <span className="text-[10px] text-emerald-400 font-semibold uppercase tracking-wider">
-              Conselheiro de Fé • Online
+              Faith Counselor • Online
             </span>
           </div>
         </div>
@@ -52,7 +52,7 @@ export const ChatPastor: React.FC = () => {
         <button
           onClick={clearChat}
           className="p-2 rounded-lg hover:bg-white/5 text-slate-400 hover:text-rose-400 transition-colors"
-          title="Limpar Histórico de Conversa"
+          title="Clear Conversation History"
         >
           <Trash2 className="w-4 h-4" />
         </button>
@@ -64,7 +64,7 @@ export const ChatPastor: React.FC = () => {
         {/* Aviso de Privacidade */}
         <div className="flex items-center gap-2 p-3 rounded-xl bg-white/5 border border-white/5 text-[10px] text-slate-400 max-w-md mx-auto justify-center mb-4">
           <Shield className="w-3.5 h-3.5 text-spiritual-gold" />
-          <span>Suas conversas são 100% confidenciais e salvas localmente no seu aparelho.</span>
+          <span>Your conversations are 100% confidential and saved locally on your device.</span>
         </div>
 
         {/* Mapeamento de Mensagens */}
@@ -108,7 +108,7 @@ export const ChatPastor: React.FC = () => {
         {isLoading && (
           <div className="flex w-full justify-start">
             <div className="bg-spiritual-indigo/60 text-slate-400 rounded-2xl rounded-tl-none px-4 py-3 border border-white/5 flex items-center gap-1.5">
-              <span className="text-xs italic">Pastor Caleb está digitando</span>
+              <span className="text-xs italic">Pastor Caleb is typing</span>
               <span className="flex gap-0.5 mt-0.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: '0ms' }} />
                 <span className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: '150ms' }} />
@@ -142,7 +142,7 @@ export const ChatPastor: React.FC = () => {
           type="text"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
-          placeholder="Escreva sua mensagem ou pedido de oração..."
+          placeholder="Write your message or prayer request..."
           disabled={isLoading}
           className="flex-1 px-4 py-3 rounded-xl bg-spiritual-dark/60 border border-white/5 text-xs text-slate-100 placeholder-slate-500 outline-none focus:border-spiritual-gold/40 transition-colors disabled:opacity-50"
         />

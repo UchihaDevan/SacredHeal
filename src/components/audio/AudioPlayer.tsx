@@ -73,7 +73,7 @@ export const AudioPlayer: React.FC = () => {
         <button
           onClick={() => setIsMinimized(!isMinimized)}
           className="p-1 rounded hover:bg-white/5 text-slate-400 hover:text-slate-200 transition-colors"
-          title={isMinimized ? 'Expandir Player' : 'Minimizar Player'}
+          title={isMinimized ? 'Expand Player' : 'Minimize Player'}
         >
           {isMinimized ? <Maximize2 className="w-4 h-4" /> : <Minimize2 className="w-4 h-4" />}
         </button>
@@ -83,7 +83,7 @@ export const AudioPlayer: React.FC = () => {
         // Modo Minimizado
         <div className="w-full flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-spiritual-gold">{currentTrack.hz ? `${currentTrack.hz}Hz` : 'Áudio'}</span>
+            <span className="text-xs font-semibold text-spiritual-gold">{currentTrack.hz ? `${currentTrack.hz}Hz` : 'Audio'}</span>
             <span className="text-xs text-slate-300 font-serif truncate max-w-[150px] sm:max-w-xs">{currentTrack.name}</span>
           </div>
           <div className="flex items-center gap-4 mr-8">
@@ -123,21 +123,21 @@ export const AudioPlayer: React.FC = () => {
               <button
                 onClick={previousTrack}
                 className="p-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/5 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
-                title="Faixa Anterior"
+                title="Previous Track"
               >
                 <SkipBack className="w-5 h-5" />
               </button>
               <button
                 onClick={handlePlayPause}
                 className="p-3 rounded-full gold-bg-gradient text-slate-900 hover:scale-105 transition-all shadow-[0_0_15px_rgba(199,167,92,0.3)]"
-                title={isPlaying ? 'Pausar' : 'Tocar'}
+                title={isPlaying ? 'Pause' : 'Play'}
               >
                 {isPlaying ? <Pause className="w-5 h-5 fill-slate-900" /> : <Play className="w-5 h-5 fill-slate-900" />}
               </button>
               <button
                 onClick={nextTrack}
                 className="p-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/5 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
-                title="Próxima Faixa"
+                title="Next Track"
               >
                 <SkipForward className="w-5 h-5" />
               </button>
@@ -170,7 +170,7 @@ export const AudioPlayer: React.FC = () => {
               <button
                 onClick={handleMuteToggle}
                 className="p-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/5 text-slate-550 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
-                title={isMuted ? 'Ativar Som' : 'Mutar'}
+                title={isMuted ? 'Unmute' : 'Mute'}
               >
                 {isMuted || volume === 0 ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
               </button>

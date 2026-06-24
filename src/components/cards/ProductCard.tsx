@@ -86,7 +86,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <button
           onClick={toggleFavorite}
           className="absolute top-3 right-3 p-2 rounded-full bg-spiritual-dark/60 backdrop-blur-md border border-white/5 text-slate-300 hover:text-rose-500 hover:scale-110 active:scale-95 transition-all"
-          title={isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+          title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
         >
           <Heart className={`w-4 h-4 ${isFavorite ? 'fill-rose-500 text-rose-500' : ''}`} />
         </button>
@@ -132,7 +132,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Rodapé do Card com Botão de Ação */}
         <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between">
           <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-widest">
-            {product.isComingSoon ? 'Saiba Mais' : product.audioUrl ? 'Tocar Agora' : 'Acessar'}
+            {product.isComingSoon ? 'Learn More' : product.audioUrl ? 'Play Now' : 'Access'}
           </span>
           
           <button

@@ -19,7 +19,7 @@ export const SacredChallenge: React.FC = () => {
   };
 
   const handleReset = (challengeId: string) => {
-    if (confirm('Tem certeza que deseja reiniciar o progresso deste desafio espiritual?')) {
+    if (confirm('Are you sure you want to reset the progress of this spiritual challenge?')) {
       resetChallenge(challengeId);
     }
   };
@@ -35,17 +35,17 @@ export const SacredChallenge: React.FC = () => {
       {/* Cabeçalho */}
       <div className="space-y-2">
         <h1 className="text-3xl md:text-4xl font-serif font-bold text-slate-100">
-          Desafio <span className="gold-text-gradient font-serif">Sagrado de Fé</span>
+          Sacred <span className="gold-text-gradient font-serif">Challenge of Faith</span>
         </h1>
         <p className="text-slate-400 text-sm max-w-xl leading-relaxed">
-          Assuma um compromisso de oração e meditação. Desenvolva o hábito diário e sintonize seu espírito com o Criador.
+          Make a commitment to prayer and meditation. Develop a daily habit and tune your spirit to the Creator.
         </p>
       </div>
 
       {/* 1. Desafios Ativos */}
       {activeChallenges.length > 0 && (
         <div className="space-y-6">
-          <h2 className="text-xl font-serif font-bold text-slate-200">Desafios em Andamento</h2>
+          <h2 className="text-xl font-serif font-bold text-slate-200">Challenges in Progress</h2>
           
           <div className="grid grid-cols-1 gap-6">
             {activeChallenges.map((c) => {
@@ -70,13 +70,13 @@ export const SacredChallenge: React.FC = () => {
                       {/* Streak */}
                       <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/25">
                         <Flame className="w-4 h-4 fill-current" />
-                        <span className="text-xs font-bold">{c.streak} Dias Seguidos</span>
+                        <span className="text-xs font-bold">{c.streak} Days Streak</span>
                       </div>
                       
                       {/* Dias Concluídos */}
                       <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-spiritual-gold/15 text-spiritual-gold border border-spiritual-gold/20">
                         <Calendar className="w-4 h-4" />
-                        <span className="text-xs font-bold">Dia {c.completedDays + 1} de {c.duration}</span>
+                        <span className="text-xs font-bold">Day {c.completedDays + 1} of {c.duration}</span>
                       </div>
                     </div>
                   </div>
@@ -84,7 +84,7 @@ export const SacredChallenge: React.FC = () => {
                   {/* Lista de Tarefas do Dia */}
                   <div className="space-y-3 mb-6 bg-spiritual-dark/50 p-4 md:p-6 rounded-2xl border border-white/5">
                     <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">
-                      Lista de Tarefas de Hoje (Dia {c.completedDays + 1})
+                      Today's Task List (Day {c.completedDays + 1})
                     </h4>
                     
                     <div className="space-y-3">
@@ -112,9 +112,9 @@ export const SacredChallenge: React.FC = () => {
                   {/* Barra de Progresso do Desafio */}
                   <div className="space-y-2 mb-6">
                     <div className="flex items-center justify-between text-xs text-slate-400">
-                      <span>Progresso Total do Desafio</span>
+                      <span>Total Challenge Progress</span>
                       <span className="font-bold text-slate-200">
-                        {c.completedDays} de {c.duration} dias concluídos ({Math.round((c.completedDays / c.duration) * 100)}%)
+                        {c.completedDays} of {c.duration} days completed ({Math.round((c.completedDays / c.duration) * 100)}%)
                       </span>
                     </div>
                     <div className="w-full h-2 rounded-full bg-white/10 overflow-hidden">
@@ -133,7 +133,7 @@ export const SacredChallenge: React.FC = () => {
                       className="w-full sm:flex-1 py-3 rounded-xl gold-bg-gradient text-slate-900 font-bold text-xs flex items-center justify-center gap-2 hover:opacity-90 disabled:opacity-50 transition-opacity"
                     >
                       <CheckCircle2 className="w-4 h-4" />
-                      <span>Concluir Consagração de Hoje</span>
+                      <span>Complete Today's Consecration</span>
                     </button>
                     
                     <button
@@ -141,7 +141,7 @@ export const SacredChallenge: React.FC = () => {
                       className="w-full sm:w-auto px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-slate-400 hover:text-slate-200 hover:bg-white/10 transition-all flex items-center justify-center gap-1.5"
                     >
                       <RotateCcw className="w-4 h-4" />
-                      <span>Reiniciar Desafio</span>
+                      <span>Reset Challenge</span>
                     </button>
                   </div>
                 </div>
@@ -154,7 +154,7 @@ export const SacredChallenge: React.FC = () => {
       {/* 2. Desafios Concluídos */}
       {completedChallenges.length > 0 && (
         <div className="space-y-4">
-          <h2 className="text-xl font-serif font-bold text-slate-200">Desafios Completados</h2>
+          <h2 className="text-xl font-serif font-bold text-slate-200">Completed Challenges</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {completedChallenges.map((c) => (
@@ -167,22 +167,22 @@ export const SacredChallenge: React.FC = () => {
                 <div>
                   <div className="flex items-center gap-2 text-emerald-400 mb-3">
                     <Sparkles className="w-5 h-5 animate-pulse" />
-                    <span className="text-xs font-bold uppercase tracking-wider">Desafio Cumprido!</span>
+                    <span className="text-xs font-bold uppercase tracking-wider">Challenge Completed!</span>
                   </div>
                   
                   <h3 className="font-serif font-bold text-slate-100 text-lg leading-tight">{c.name}</h3>
                   <p className="text-xs text-slate-400 mt-2 leading-relaxed">
-                    Parabéns por completar os {c.duration} dias de consagração e purificação espiritual. Que a luz divina guie seus caminhos!
+                    Congratulations on completing the {c.duration} days of spiritual consecration and purification. May the divine light guide your paths!
                   </p>
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
-                  <span className="text-[10px] text-slate-500 font-bold">Finalizado com sucesso</span>
+                  <span className="text-[10px] text-slate-500 font-bold">Successfully completed</span>
                   <button
                     onClick={() => handleReset(c.id)}
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/5 text-[10px] text-slate-400 hover:text-slate-200 transition-colors"
                   >
-                    <RotateCcw className="w-3 h-3" /> Reiniciar
+                    <RotateCcw className="w-3 h-3" /> Reset
                   </button>
                 </div>
               </div>
@@ -194,7 +194,7 @@ export const SacredChallenge: React.FC = () => {
       {/* 3. Desafios Disponíveis */}
       {availableChallenges.length > 0 && (
         <div className="space-y-4">
-          <h2 className="text-xl font-serif font-bold text-slate-200">Desafios de Consagração Disponíveis</h2>
+          <h2 className="text-xl font-serif font-bold text-slate-200">Available Consecration Challenges</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {availableChallenges.map((c) => (
@@ -217,13 +217,13 @@ export const SacredChallenge: React.FC = () => {
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
-                  <span className="text-xs text-slate-500 font-bold">{c.duration} Dias</span>
+                  <span className="text-xs text-slate-500 font-bold">{c.duration} Days</span>
                   
                   <button
                     onClick={() => handleStart(c.id)}
                     className="px-4 py-2 rounded-full gold-bg-gradient text-slate-900 font-bold text-[10px] uppercase tracking-wider hover:opacity-90 transition-opacity"
                   >
-                    Iniciar Agora
+                    Start Now
                   </button>
                 </div>
               </div>

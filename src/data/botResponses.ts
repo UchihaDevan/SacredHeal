@@ -2,68 +2,68 @@ import type { BotResponse } from '../types';
 
 export const botResponses: BotResponse[] = [
   {
-    keywords: ['ola', 'olá', 'oi', 'bom dia', 'boa tarde', 'boa noite', 'pastor', 'caleb', 'pastor caleb'],
+    keywords: ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'good evening', 'pastor', 'caleb', 'pastor caleb'],
     responses: [
-      'Graça e paz, meu irmão! Como posso ajudar você e sua família no dia de hoje?',
-      'Seja muito bem-vindo! Que a presença do Senhor seja com você hoje. Como posso orar por você agora?',
-      'Olá! Sou o Pastor Caleb. Estou aqui para oferecer conselhos bíblicos, orações e um ouvido amigo. O que está em seu coração?'
+      'Grace and peace, my friend! How can I help you and your family today?',
+      'Welcome! May the presence of the Lord be with you today. How can I pray for you right now?',
+      'Hello! I am Pastor Caleb. I am here to offer biblical counsel, prayers, and a friendly ear. What is on your heart?'
     ]
   },
   {
-    keywords: ['triste', 'tristeza', 'depressao', 'depressão', 'choro', 'chorando', 'angustia', 'angústia', 'desespero', 'sozinho', 'solidao', 'solidão'],
+    keywords: ['sad', 'sadness', 'depression', 'depressed', 'cry', 'crying', 'anguish', 'grief', 'despair', 'alone', 'lonely', 'loneliness'],
     responses: [
-      'Lembre-se de que o choro pode durar uma noite, mas a alegria vem pela manhã. Você não está sozinho; o Senhor está bem ao seu lado.',
-      'Em momentos de profunda dor, Deus recolhe cada uma de nossas lágrimas. Permita-me compartilhar um versículo de esperança com você.',
-      'A depressão e a tristeza tentam obscurecer nossa visão, mas a luz de Cristo é maior que qualquer escuridão. O Senhor ama você incondicionalmente.'
+      'Remember that weeping may tarry for the night, but joy comes with the morning. You are not alone; the Lord is right by your side.',
+      'In moments of deep pain, God gathers each of our tears. Allow me to share a verse of hope with you.',
+      "Depression and sadness try to cloud our vision, but Christ's light is greater than any darkness. The Lord loves you unconditionally."
     ],
-    verse: 'O Senhor está perto dos que têm o coração quebrantado e salva os de espírito abatido.',
-    verseReference: 'Salmos 34:18'
+    verse: 'The Lord is near to the brokenhearted and saves the crushed in spirit.',
+    verseReference: 'Psalms 34:18'
   },
   {
-    keywords: ['medo', 'ansiedade', 'ansioso', 'ansiosa', 'preocupado', 'preocupada', 'panico', 'pânico', 'preocupacao', 'preocupação'],
+    keywords: ['fear', 'anxiety', 'anxious', 'worried', 'worry', 'panic', 'apprehensive', 'scared', 'afraid'],
     responses: [
-      'A Palavra nos diz para não andarmos ansiosos por coisa alguma. Entregue suas preocupações a Deus em oração, Ele cuida de você.',
-      'O medo é real, mas o amor de Deus lança fora todo o medo. Respire fundo, sintonize uma frequência de paz e confie.',
-      'Quando a ansiedade bater à sua porta, lembre-se: Deus está no controle de todas as coisas. O amanhã pertence a Ele.'
+      'The Word tells us not to be anxious about anything. Hand over your worries to God in prayer; He cares for you.',
+      "Fear is real, but God's perfect love casts out all fear. Take a deep breath, tune in to a frequency of peace, and trust.",
+      'When anxiety knocks at your door, remember: God is in control of all things. Tomorrow belongs to Him.'
     ],
-    verse: 'Não andem ansiosos por coisa alguma, mas em tudo, pela oração e súplicas, e com ação de graças, apresentem seus pedidos a Deus. E a paz de Deus, que excede todo o entendimento, guardará o coração e a mente de vocês em Cristo Jesus.',
-    verseReference: 'Filipenses 4:6-7'
+    verse: 'Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God. And the peace of God, which surpasses all understanding, will guard your hearts and your minds in Christ Jesus.',
+    verseReference: 'Philippians 4:6-7'
   },
   {
-    keywords: ['dinheiro', 'financeiro', 'divida', 'dívida', 'dividas', 'dívidas', 'escassez', 'crise', 'falta', 'desemprego', 'emprego'],
+    keywords: ['money', 'financial', 'debt', 'debts', 'scarcity', 'crisis', 'lack', 'unemployment', 'job', 'work', 'broke'],
     responses: [
-      'Deus é o nosso provedor. Mesmo em meio à escassez, Ele tem planos de prosperidade e fartura para sua vida. Creia!',
-      'As dificuldades financeiras podem testar nossa fé, mas o Senhor suprirá todas as suas necessidades de acordo com as riquezas Dele.',
-      'Não se preocupe com o que comer ou vestir, pois seu Pai Celestial sabe que você precisa de tudo isso. Busque primeiro o Reino de Deus.'
+      'God is our provider. Even in the midst of scarcity, He has plans of prosperity and abundance for your life. Believe!',
+      'Financial difficulties can test our faith, but the Lord will supply all your needs according to His riches.',
+      'Do not worry about what you will eat or wear, for your Heavenly Father knows you need all of this. Seek first the Kingdom of God.'
     ],
-    verse: 'O meu Deus suprirá todas as necessidades de vocês, de acordo com as suas gloriosas riquezas em Cristo Jesus.',
-    verseReference: 'Filipenses 4:19'
+    verse: 'And my God will supply every need of yours according to his riches in glory in Christ Jesus.',
+    verseReference: 'Philippians 4:19'
   },
   {
-    keywords: ['cura', 'doente', 'doenca', 'doença', 'enfermidade', 'dor', 'dores', 'saude', 'saúde', 'hospital', 'cancer', 'câncer'],
+    keywords: ['healing', 'cure', 'sick', 'sickness', 'illness', 'disease', 'pain', 'pains', 'health', 'hospital', 'cancer', 'ill'],
     responses: [
-      'Pelas feridas de Cristo fomos sarados. Clame ao Senhor pela sua saúde agora; Ele é o Deus que cura.',
-      'Que a mão curadora de Deus repouse sobre seu corpo neste exato momento. A fé remove montanhas e traz cura física e espiritual.',
-      'Não perca as esperanças. Jesus curou a muitos que O buscaram, e Seu poder restaurador continua o mesmo hoje.'
+      "By Christ's wounds we were healed. Cry out to the Lord for your health now; He is the God who heals.",
+      'May the healing hand of God rest upon your body at this very moment. Faith moves mountains and brings physical and spiritual healing.',
+      'Do not lose hope. Jesus healed many who sought Him, and His restoring power remains the same today.'
     ],
-    verse: 'Ele é quem perdoa todos os seus pecados e cura todas as suas enfermidades.',
-    verseReference: 'Salmos 103:3'
+    verse: 'Who forgives all your iniquity, who heals all your diseases.',
+    verseReference: 'Psalms 103:3'
   },
   {
-    keywords: ['ajuda', 'ajudar', 'ajude', 'oracao', 'oração', 'ore', 'orar', 'ajuda-me'],
+    keywords: ['help', 'pray', 'prayer', 'praying', 'intercede', 'support', 'help me'],
     responses: [
-      'Estou aqui para orar por você. Senhor, peço que derrame Tua bênção e Tua paz sobre esta vida agora.',
-      'Clame a Deus e Ele responderá. Vamos elevar nossos pensamentos ao Senhor em oração. O que você gostaria de colocar no altar de Deus?',
-      'A oração de um justo é poderosa e eficaz. Conte comigo para interceder por você diante do Pai.'
+      'I am here to pray for you. Lord, I ask that You pour out Your blessing and Your peace upon this life now.',
+      "Call to God and He will answer. Let us lift our thoughts to the Lord in prayer. What would you like to place on God's altar?",
+      'The prayer of a righteous person is powerful and effective. Count on me to intercede for you before the Father.'
     ],
-    verse: 'Clame a mim e eu responderei e direi a você coisas grandiosas e insondáveis que você não conhece.',
-    verseReference: 'Jeremias 33:3'
+    verse: 'Call to me and I will answer you, and will tell you great and hidden things that you have not known.',
+    verseReference: 'Jeremiah 33:3'
   }
 ];
 
 export const fallbackResponses: string[] = [
-  'Compreendo seu coração. Saiba que Deus tem um plano maravilhoso para você. Gostaria de orar por isso?',
-  'Suas palavras são importantes. Coloque suas aflições no Senhor e Ele sustentará você. Há algo específico pelo qual deseja orar?',
-  'Que a paz de Cristo encha sua mente neste momento. Continue firme na fé e sintonize nossas frequências para meditar na presença de Deus.',
-  'O Senhor conhece seus caminhos e suas lutas. Mantenha os olhos voltados para Ele. Deseja falar mais sobre isso ou prefere ler um versículo de ânimo?'
+  'I understand your heart. Know that God has a wonderful plan for you. Would you like to pray for this?',
+  'Your words are important. Cast your burdens upon the Lord and He will sustain you. Is there something specific you wish to pray for?',
+  "May the peace of Christ fill your mind at this moment. Remain firm in faith and tune in to our frequencies to meditate in God's presence.",
+  'The Lord knows your ways and your struggles. Keep your eyes fixed on Him. Would you like to talk more about this, or would you prefer to read an encouraging verse?'
 ];

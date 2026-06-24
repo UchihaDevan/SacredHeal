@@ -31,7 +31,7 @@ export const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
           <button
             onClick={onMenuToggle}
             className="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 md:hidden text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
-            aria-label="Abrir menu"
+            aria-label="Open menu"
           >
             <Menu className="w-5 h-5" />
           </button>
@@ -54,7 +54,7 @@ export const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
             className="w-full flex items-center gap-3 px-4 py-2 rounded-full bg-slate-200/50 dark:bg-spiritual-indigo/40 border border-slate-300/30 dark:border-white/5 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:border-spiritual-gold/30 dark:hover:border-spiritual-gold/30 transition-all text-left text-sm"
           >
             <Search className="w-4 h-4 text-spiritual-gold" />
-            <span>Buscar frequências, orações, versículos...</span>
+            <span>Search frequencies, prayers, verses...</span>
             <span className="ml-auto text-xs bg-black/10 dark:bg-white/10 px-2 py-0.5 rounded text-slate-500 dark:text-slate-400">/</span>
           </button>
         </div>
@@ -65,7 +65,7 @@ export const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
           <button
             onClick={() => setIsSearchOpen(true)}
             className="md:hidden p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
-            aria-label="Buscar"
+            aria-label="Search"
           >
             <Search className="w-5 h-5" />
           </button>
@@ -74,7 +74,7 @@ export const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
-            title={preferences.theme === 'dark' ? 'Modo Claro' : 'Modo Escuro'}
+            title={preferences.theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
           >
             {preferences.theme === 'dark' ? (
               <Sun className="w-5 h-5 text-amber-400" />
@@ -89,7 +89,7 @@ export const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
             className={`p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors relative ${
               preferences.notifications ? 'text-slate-800 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white' : 'text-slate-400 dark:text-slate-500'
             }`}
-            title="Notificações"
+            title="Notifications"
           >
             <Bell className="w-5 h-5" />
             {preferences.notifications && (

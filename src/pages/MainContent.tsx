@@ -63,10 +63,10 @@ export const MainContent: React.FC<MainContentProps> = ({
       {/* Cabeçalho */}
       <div className="space-y-2">
         <h1 className="text-3xl md:text-4xl font-serif font-bold text-slate-100">
-          Cofre de <span className="gold-text-gradient font-serif">Frequências Sagradas</span>
+          Vault of <span className="gold-text-gradient font-serif">Sacred Frequencies</span>
         </h1>
         <p className="text-slate-400 text-sm max-w-xl leading-relaxed">
-          Navegue entre programas de bem-estar integral e frequências de áudio científicas de cura espiritual.
+          Browse between holistic wellness programs and scientific audio frequencies for spiritual healing.
         </p>
       </div>
 
@@ -80,7 +80,7 @@ export const MainContent: React.FC<MainContentProps> = ({
               : 'border-transparent text-slate-400 hover:text-slate-200'
           }`}
         >
-          Programas Completos
+          Full Programs
         </button>
         <button
           onClick={() => setSubTab('hz-vault')}
@@ -90,7 +90,7 @@ export const MainContent: React.FC<MainContentProps> = ({
               : 'border-transparent text-slate-400 hover:text-slate-200'
           }`}
         >
-          Frequências Hz de Cura (7)
+          Healing Hz Frequencies (7)
         </button>
         <button
           onClick={() => setSubTab('archangels')}
@@ -100,7 +100,7 @@ export const MainContent: React.FC<MainContentProps> = ({
               : 'border-transparent text-slate-400 hover:text-slate-200'
           }`}
         >
-          Frequências dos Arcanjos
+          Archangels Frequencies
         </button>
       </div>
 
@@ -125,7 +125,7 @@ export const MainContent: React.FC<MainContentProps> = ({
             <div className="flex items-center gap-3">
               <Radio className="w-5 h-5 text-spiritual-gold" />
               <p className="text-xs text-slate-300 max-w-md">
-                As frequências Solfeggio atuam equilibrando a mente e estimulando a autorregeneração celular. Ouça os arquivos de som do MVP ou sintonize o tom senoidal puro direto da Web Audio API.
+                Solfeggio frequencies work by balancing the mind and stimulating cellular self-regeneration. Listen to the MVP sound files or tune the pure sine wave direct from the Web Audio API.
               </p>
             </div>
             {activePureHz && (
@@ -133,7 +133,7 @@ export const MainContent: React.FC<MainContentProps> = ({
                 onClick={() => handleTogglePureTone(activePureHz)}
                 className="px-4 py-2 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-bold hover:bg-rose-500/30 transition-colors shrink-0"
               >
-                Parar Tom Puro ({activePureHz}Hz)
+                Stop Pure Tone ({activePureHz}Hz)
               </button>
             )}
           </div>
@@ -173,7 +173,7 @@ export const MainContent: React.FC<MainContentProps> = ({
                           : 'bg-white/5 text-slate-300 border-white/5 hover:border-spiritual-gold/30'
                       }`}
                     >
-                      {isPurePlaying ? 'Mutar Tom' : 'Ouvir Tom Puro'}
+                      {isPurePlaying ? 'Mute Tone' : 'Play Pure Tone'}
                     </button>
 
                     {/* Botão Play Faixa MVP */}
