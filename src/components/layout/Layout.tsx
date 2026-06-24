@@ -3,6 +3,7 @@ import { Header } from './Header';
 import { Sidebar } from './Sidebar';
 import { AudioPlayer } from '../audio/AudioPlayer';
 import { SupportModal } from '../modals/SupportModal';
+import { ChatWidget } from '../chat/ChatWidget';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -39,6 +40,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, activeTab, onTabChange
           </main>
         </div>
       </div>
+
+      {/* Botão de Chat Flutuante */}
+      {activeTab !== 'chat' && <ChatWidget onNavigateToTab={onTabChange} />}
 
       {/* Player de Áudio Fixo Persistente na Base */}
       <footer className="fixed bottom-0 left-0 right-0 z-30">

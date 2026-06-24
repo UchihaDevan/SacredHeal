@@ -19,7 +19,14 @@
 /* Estilos de Base */
 @layer base {
   body {
-    @apply bg-spiritual-dark text-slate-200 font-sans min-h-screen overflow-x-hidden;
+    @apply bg-slate-50 text-slate-800 font-sans min-h-screen overflow-x-hidden transition-colors duration-300;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(199, 167, 92, 0.06) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(76, 29, 149, 0.04) 0px, transparent 50%);
+  }
+  
+  .dark body {
+    @apply bg-spiritual-dark text-slate-200;
     background-image: 
       radial-gradient(at 0% 0%, rgba(27, 27, 58, 0.3) 0px, transparent 50%),
       radial-gradient(at 100% 100%, rgba(76, 29, 149, 0.15) 0px, transparent 50%),
@@ -27,38 +34,64 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif text-slate-100;
+    @apply font-serif text-slate-800 transition-colors duration-300;
+  }
+  
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    @apply text-slate-100;
   }
 }
 
 /* Classes Utilitárias do Design System (Tailwind v4 @utility) */
 @utility glass-effect {
-  background: rgba(27, 27, 58, 0.35);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  
+  .dark & {
+    background: rgba(27, 27, 58, 0.35);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
 }
 
 @utility glass-effect-hover {
   @apply transition-all duration-300;
   &:hover {
-    background: rgba(27, 27, 58, 0.55);
-    border-color: rgba(199, 167, 92, 0.25);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(199, 167, 92, 0.35);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    
+    .dark & {
+      background: rgba(27, 27, 58, 0.55);
+      border-color: rgba(199, 167, 92, 0.25);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
   }
 }
 
 @utility glass-effect-dark {
-  background: rgba(7, 7, 15, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  
+  .dark & {
+    background: rgba(7, 7, 15, 0.85);
+    border-color: rgba(255, 255, 255, 0.03);
+  }
 }
 
 @utility gold-text-gradient {
   background: linear-gradient(135deg, #e5c98d 0%, #c7a75c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  
+  .dark & {
+    background: linear-gradient(135deg, #e5c98d 0%, #c7a75c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 @utility gold-bg-gradient {

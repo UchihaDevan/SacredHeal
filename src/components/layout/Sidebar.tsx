@@ -42,7 +42,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Sidebar Drawer */}
       <aside
-        className={`fixed md:sticky top-0 left-0 z-45 w-64 h-screen bg-spiritual-navy border-r border-white/5 p-6 flex flex-col justify-between transition-transform duration-300 md:translate-x-0 ${
+        className={`fixed md:sticky top-0 left-0 z-45 w-64 h-screen bg-slate-100 dark:bg-spiritual-navy border-r border-slate-200 dark:border-white/5 p-6 flex flex-col justify-between transition-all duration-300 md:translate-x-0 ${
           isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
@@ -52,15 +52,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <span className="text-xl font-bold font-serif gold-text-gradient">Menu</span>
             <button
               onClick={onClose}
-              className="p-1 rounded-lg hover:bg-white/5 text-slate-400 hover:text-slate-200 transition-colors"
+              className="p-1 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
           {/* Atalho de Frase Inspiradora no topo do menu */}
-          <div className="hidden md:block p-4 rounded-xl bg-spiritual-indigo/30 border border-white/5">
-            <p className="text-[11px] text-slate-400 italic text-center">
+          <div className="hidden md:block p-4 rounded-xl bg-slate-200/50 dark:bg-spiritual-indigo/30 border border-slate-300/30 dark:border-white/5">
+            <p className="text-[11px] text-slate-600 dark:text-slate-400 italic text-center">
               "A fé é a certeza daquilo que esperamos e a prova das coisas que não vemos."
             </p>
           </div>
@@ -77,10 +77,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                     isActive
                       ? 'bg-spiritual-gold/10 text-spiritual-gold border border-spiritual-gold/20 shadow-[0_0_15px_rgba(199,167,92,0.05)]'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-black/5 dark:hover:bg-white/5 border border-transparent'
                   }`}
                 >
-                  <Icon className={`w-5 h-5 ${isActive ? 'text-spiritual-gold' : 'text-slate-400'}`} />
+                  <Icon className={`w-5 h-5 ${isActive ? 'text-spiritual-gold' : 'text-slate-500 dark:text-slate-400'}`} />
                   <span>{item.label}</span>
                 </button>
               );
@@ -89,15 +89,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Botão de Suporte Técnico */}
-        <div className="pt-6 border-t border-white/5">
+        <div className="pt-6 border-t border-slate-200 dark:border-white/5">
           <button
             onClick={() => {
               onSupportOpen();
               onClose();
             }}
-            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all border border-transparent"
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-black/5 dark:hover:bg-white/5 transition-all border border-transparent"
           >
-            <HelpCircle className="w-5 h-5 text-slate-400" />
+            <HelpCircle className="w-5 h-5 text-slate-500 dark:text-slate-400" />
             <span>Suporte Técnico</span>
           </button>
         </div>

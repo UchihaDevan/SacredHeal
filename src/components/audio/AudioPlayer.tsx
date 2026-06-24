@@ -110,7 +110,7 @@ export const AudioPlayer: React.FC = () => {
                   </span>
                 )}
               </div>
-              <h4 className="text-sm font-serif text-slate-100 font-medium truncate" title={currentTrack.name}>
+              <h4 className="text-sm font-serif text-slate-800 dark:text-slate-100 font-medium truncate" title={currentTrack.name}>
                 {currentTrack.name}
               </h4>
             </div>
@@ -122,7 +122,7 @@ export const AudioPlayer: React.FC = () => {
             <div className="flex items-center gap-5">
               <button
                 onClick={previousTrack}
-                className="p-1.5 rounded-full hover:bg-white/5 text-slate-400 hover:text-slate-200 transition-colors"
+                className="p-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/5 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
                 title="Faixa Anterior"
               >
                 <SkipBack className="w-5 h-5" />
@@ -136,7 +136,7 @@ export const AudioPlayer: React.FC = () => {
               </button>
               <button
                 onClick={nextTrack}
-                className="p-1.5 rounded-full hover:bg-white/5 text-slate-400 hover:text-slate-200 transition-colors"
+                className="p-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/5 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
                 title="Próxima Faixa"
               >
                 <SkipForward className="w-5 h-5" />
@@ -145,21 +145,21 @@ export const AudioPlayer: React.FC = () => {
 
             {/* Barra de Progresso */}
             <div className="w-full flex items-center gap-3">
-              <span className="text-[10px] text-slate-400 font-mono w-8 text-right">{formatTime(currentTime)}</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono w-8 text-right">{formatTime(currentTime)}</span>
               <input
                 type="range"
                 min={0}
                 max={duration || 100}
                 value={currentTime}
                 onChange={handleProgressChange}
-                className="flex-1 h-1 rounded-full bg-white/10 accent-spiritual-gold cursor-pointer"
+                className="flex-1 h-1 rounded-full bg-black/10 dark:bg-white/10 accent-spiritual-gold cursor-pointer"
               />
-              <span className="text-[10px] text-slate-400 font-mono w-8">{formatTime(duration)}</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono w-8">{formatTime(duration)}</span>
             </div>
           </div>
 
-          {/* Visualizador de Espectro e Volume */}
-          <div className="w-full md:w-1/4 flex items-center gap-4 justify-between md:justify-end shrink-0">
+          {/* Visualizador de Espectro e Volume (Oculto no celular em conformidade com mobile-first) */}
+          <div className="w-full md:w-1/4 flex items-center gap-4 justify-between md:justify-end shrink-0 hidden md:flex">
             {/* Visualizador de Ondas */}
             <div className="flex-1 max-w-[120px] hidden lg:block">
               <AudioVisualizer isPlaying={isPlaying} hz={currentTrack.hz} />
@@ -169,7 +169,7 @@ export const AudioPlayer: React.FC = () => {
             <div className="flex items-center gap-2 w-full md:w-auto md:max-w-[140px]">
               <button
                 onClick={handleMuteToggle}
-                className="p-1.5 rounded-full hover:bg-white/5 text-slate-400 hover:text-slate-200 transition-colors"
+                className="p-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/5 text-slate-550 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
                 title={isMuted ? 'Ativar Som' : 'Mutar'}
               >
                 {isMuted || volume === 0 ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
@@ -181,7 +181,7 @@ export const AudioPlayer: React.FC = () => {
                 step={0.01}
                 value={isMuted ? 0 : volume}
                 onChange={handleVolumeChange}
-                className="w-full md:w-20 h-1 rounded-full bg-white/10 accent-spiritual-gold cursor-pointer"
+                className="w-full md:w-20 h-1 rounded-full bg-black/10 dark:bg-white/10 accent-spiritual-gold cursor-pointer"
               />
             </div>
           </div>
