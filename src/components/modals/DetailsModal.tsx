@@ -5,7 +5,6 @@ import type { Product } from '../../types';
 import { useUserStore } from '../../store/userStore';
 import { useAudioStore } from '../../store/audioStore';
 import { frequenciesData, archangelsData } from '../../data/products';
-import { dailyVerses } from '../../data/biblicalVerses';
 import { DivineCodePreview } from './DivineCodePreview';
 
 interface DetailsModalProps {
@@ -261,28 +260,6 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
               </div>
             )}
 
-            {/* Daily Verses Sub-Items */}
-            {product.id === 'daily-verses' && (
-              <div className="space-y-3 pt-2">
-                <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                  Histórico de Mensagens Diárias:
-                </h4>
-                <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
-                  {dailyVerses.map((verse) => (
-                    <div
-                      key={verse.id}
-                      className="p-2.5 rounded-xl bg-slate-200/5 dark:bg-white/5 border border-slate-200/10 dark:border-white/5 text-left"
-                    >
-                      <p className="text-xs font-serif italic text-slate-700 dark:text-slate-200">"{verse.verse}"</p>
-                      <div className="flex items-center justify-between mt-1 pt-1 border-t border-slate-200/5">
-                        <span className="text-[9px] font-semibold text-spiritual-gold font-serif">— {verse.reference}</span>
-                        <span className="text-[9px] text-slate-550">{verse.interpretation.slice(0, 45)}...</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
 
             {/* Coming Soon (Divine Energy Code) */}
             {product.isComingSoon && (

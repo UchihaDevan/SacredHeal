@@ -6,18 +6,24 @@ import { AudioPlayer } from '../audio/AudioPlayer';
 import { SupportModal } from '../modals/SupportModal';
 import { ChatWidget } from '../chat/ChatWidget';
 import { DetailsModal } from '../modals/DetailsModal';
+import { DailyVerseModal } from '../modals/DailyVerseModal';
 import type { Product } from '../../types';
 
 export const RootLayout: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSupportOpen, setIsSupportOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isDailyVerseOpen, setIsDailyVerseOpen] = useState(false);
   const location = useLocation();
 
   const isOnChatPage = location.pathname === '/chat';
 
   const handleOpenDetails = (product: Product) => {
-    setSelectedProduct(product);
+    if (product.id === 'daily-verses') {
+      setIsDailyVerseOpen(true);
+    } else {
+      setSelectedProduct(product);
+    }
   };
 
   return (
@@ -63,6 +69,13 @@ export const RootLayout: React.FC = () => {
         <DetailsModal
           product={selectedProduct}
           onClose={() => setSelectedProduct(null)}
+        />
+      )}
+
+      {/* Dedicated Daily Verse & History Modal */}
+      {isDailyVerseOpen && (
+        <DailyVerseModal
+          onClose={() => setIsDailyVerseOpen(false)}
         />
       )}
     </div>

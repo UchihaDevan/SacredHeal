@@ -32,6 +32,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const handleAction = (e: React.MouseEvent) => {
     e.stopPropagation();
 
+    if (product.id === 'daily-verses') {
+      onOpenDetails(product);
+      return;
+    }
+
     // Direct pages & custom experience pages
     const routes: Record<string, string> = {
       'chat-pastor': '/chat',
@@ -57,10 +62,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       navigate('/frequencies', { state: { subTab: 'archangels' } });
       return;
     }
-    if (product.id === 'daily-verses') {
-      navigate('/home');
-      return;
-    }
+
     if (product.id === 'testimonials') {
       navigate('/bonus', { state: { subTab: 'testimonials' } });
       return;

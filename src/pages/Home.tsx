@@ -431,6 +431,19 @@ export const Home: React.FC = () => {
                 </>
               )}
             </button>
+            <button
+              onClick={() => {
+                const dailyVersesProduct = products.find((p) => p.id === 'daily-verses');
+                if (dailyVersesProduct) {
+                  onOpenDetails(dailyVersesProduct);
+                }
+              }}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold bg-spiritual-gold/10 hover:bg-spiritual-gold/20 text-spiritual-gold transition-colors cursor-pointer ml-auto"
+              aria-label="View daily verse history"
+            >
+              <BookOpen className="w-4.5 h-4.5" />
+              <span>View History</span>
+            </button>
           </div>
         </section>
 
