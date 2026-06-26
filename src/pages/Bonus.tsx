@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Gift, Star, Search, Calendar, ChevronLeft, ChevronRight, Download, FileText, Music, Info, CheckCircle2 } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { frequenciesData } from '../data/products';
@@ -9,7 +10,16 @@ import { usePrayerStore } from '../store/prayerStore';
 import { generatePrayerPDF, generateFrequencyGuide } from '../services/pdfGenerator';
 
 export const Bonus: React.FC = () => {
-  const [subTab, setSubTab] = useState<'prayers' | 'wisdom' | 'testimonials' | 'downloads'>('prayers');
+  const location = useLocation();
+  const [subTab, setSubTab] = useState<'prayers' | 'wisdom' | 'testimonials' | 'downloads'>(() => {
+    return (location.state as any)?.subTab || 'prayers';
+  });
+
+  useEffect(() => {
+    if (location.state && (location.state as any).subTab) {
+      setSubTab((location.state as any).subTab);
+    }
+  }, [location.state]);
   
   // Local search states
   const [wisdomQuery, setWisdomQuery] = useState('');

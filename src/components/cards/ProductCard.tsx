@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Heart, Play, MessageSquare, Award, ArrowRight, Lock } from 'lucide-react';
+import { Heart, Play, MessageSquare, Award, ArrowRight, Lock, Download, BookOpen, Radio, Shield, CheckCircle } from 'lucide-react';
 import type { Product } from '../../types';
 import { useUserStore } from '../../store/userStore';
 import { useAudioStore } from '../../store/audioStore';
@@ -32,11 +32,53 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const handleAction = (e: React.MouseEvent) => {
     e.stopPropagation();
 
-    if (product.isComingSoon) {
-      onOpenDetails(product);
+    // Direct pages & custom experience pages
+    const routes: Record<string, string> = {
+      'chat-pastor': '/chat',
+      'sacred-challenge': '/challenge',
+      'prosperity-frequencies': '/experience/prosperity',
+      'mental-frequencies': '/experience/mental',
+      'divine-accelerator': '/experience/accelerator',
+      'turbo-session': '/experience/turbo',
+      'sanctuary-healing': '/experience/sanctuary',
+    };
+
+    if (product.id in routes) {
+      navigate(routes[product.id]);
       return;
     }
 
+    // Sub-tab pages
+    if (product.id === 'healing-vault') {
+      navigate('/frequencies', { state: { subTab: 'programs' } });
+      return;
+    }
+    if (product.id === 'archangel-frequencies') {
+      navigate('/frequencies', { state: { subTab: 'archangels' } });
+      return;
+    }
+    if (product.id === 'daily-verses') {
+      navigate('/home');
+      return;
+    }
+    if (product.id === 'testimonials') {
+      navigate('/bonus', { state: { subTab: 'testimonials' } });
+      return;
+    }
+    if (product.id === 'biblical-wisdom') {
+      navigate('/bonus', { state: { subTab: 'wisdom' } });
+      return;
+    }
+    if (product.id === 'anointed-prayer-1' || product.id === 'anointed-prayer-2') {
+      navigate('/bonus', { state: { subTab: 'prayers' } });
+      return;
+    }
+    if (product.id === 'premium-resources') {
+      navigate('/bonus', { state: { subTab: 'downloads' } });
+      return;
+    }
+
+    // Default cases: play audio directly or open details modal
     if (product.audioUrl) {
       playTrack({
         id: product.id,
@@ -50,20 +92,63 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       return;
     }
 
-    // If it's the chat, navigate to chat route
-    if (product.id === 'chat-pastor') {
-      navigate('/chat');
-      return;
-    }
-
-    // If it's the sacred challenge, navigate to challenge route
-    if (product.id === 'sacred-challenge') {
-      navigate('/challenge');
-      return;
-    }
-
-    // Default case, open details modal
     onOpenDetails(product);
+  };
+
+  const getActionLabel = () => {
+    if (product.isComingSoon) return 'Open Preview';
+    
+    const labels: Record<string, string> = {
+      'healing-vault': 'Open Vault',
+      'daily-verses': 'Read Verse',
+      'archangel-frequencies': 'Tune Archangels',
+      'prosperity-frequencies': 'Enter Experience',
+      'mental-frequencies': 'Breathing Exercise',
+      'divine-accelerator': 'Accelerate',
+      'turbo-session': 'Start Session',
+      'sanctuary-healing': 'Enter Sanctuary',
+      'testimonials': 'Read Testimonies',
+      'biblical-wisdom': 'Read Studies',
+      'anointed-prayer-1': 'Pray Now',
+      'anointed-prayer-2': 'Pray Now',
+      'premium-resources': 'Get Resources',
+      'chat-pastor': 'Start Chat',
+      'sacred-challenge': 'View Streak'
+    };
+
+    if (product.id in labels) return labels[product.id];
+    return product.audioUrl ? 'Play Now' : 'Access';
+  };
+
+  const renderActionIcon = () => {
+    if (product.isComingSoon) return <ArrowRight className="w-4 h-4" />;
+
+    switch (product.id) {
+      case 'healing-vault':
+        return <Radio className="w-4 h-4" />;
+      case 'archangel-frequencies':
+        return <Shield className="w-4 h-4" />;
+      case 'daily-verses':
+      case 'biblical-wisdom':
+        return <BookOpen className="w-4 h-4" />;
+      case 'chat-pastor':
+        return <MessageSquare className="w-4 h-4" />;
+      case 'sacred-challenge':
+        return <Award className="w-4 h-4" />;
+      case 'anointed-prayer-1':
+      case 'anointed-prayer-2':
+        return <CheckCircle className="w-4 h-4" />;
+      case 'premium-resources':
+        return <Download className="w-4 h-4" />;
+      case 'prosperity-frequencies':
+      case 'mental-frequencies':
+      case 'divine-accelerator':
+      case 'turbo-session':
+      case 'sanctuary-healing':
+        return <Play className="w-4 h-4 fill-current" />;
+      default:
+        return product.audioUrl ? <Play className="w-4 h-4 fill-current" /> : <ArrowRight className="w-4 h-4" />;
+    }
   };
 
   return (
@@ -132,24 +217,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Card Footer with Action Button */}
         <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between">
           <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-widest">
-            {product.isComingSoon ? 'Learn More' : product.audioUrl ? 'Play Now' : 'Access'}
+            {getActionLabel()}
           </span>
           
           <button
             onClick={handleAction}
             className="flex items-center justify-center p-2.5 rounded-xl bg-spiritual-indigo/40 hover:bg-spiritual-gold text-slate-300 hover:text-slate-900 transition-all"
           >
-            {product.isComingSoon ? (
-              <ArrowRight className="w-4 h-4" />
-            ) : product.audioUrl ? (
-              <Play className="w-4 h-4 fill-current" />
-            ) : product.id === 'chat-pastor' ? (
-              <MessageSquare className="w-4 h-4" />
-            ) : product.id === 'sacred-challenge' ? (
-              <Award className="w-4 h-4" />
-            ) : (
-              <ArrowRight className="w-4 h-4" />
-            )}
+            {renderActionIcon()}
           </button>
         </div>
       </div>

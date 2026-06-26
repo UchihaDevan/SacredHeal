@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Play, Volume2, Radio, Shield } from 'lucide-react';
 import { products, frequenciesData, archangelsData } from '../data/products';
 import { ProductCard } from '../components/cards/ProductCard';
@@ -8,7 +9,16 @@ import { useLayoutContext } from '../hooks/useLayoutContext';
 
 export const MainContent: React.FC = () => {
   const { onOpenDetails } = useLayoutContext();
-  const [subTab, setSubTab] = useState<'programs' | 'hz-vault' | 'archangels'>('programs');
+  const location = useLocation();
+  const [subTab, setSubTab] = useState<'programs' | 'hz-vault' | 'archangels'>(() => {
+    return (location.state as any)?.subTab || 'programs';
+  });
+
+  useEffect(() => {
+    if (location.state && (location.state as any).subTab) {
+      setSubTab((location.state as any).subTab);
+    }
+  }, [location.state]);
   const playTrack = useAudioStore((state) => state.play);
   const currentTrack = useAudioStore((state) => state.currentTrack);
   const isPlaying = useAudioStore((state) => state.isPlaying);
