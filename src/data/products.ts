@@ -22,7 +22,7 @@ export const products: Product[] = [
     name: 'Daily Verses',
     section: 'main',
     description: 'Daily spiritual nourishment. A biblical verse selected each day with deep pastoral interpretations to guide your steps.',
-    imageUrl: 'https://images.unsplash.com/photo-1504052434569-70ad58565b90?auto=format&fit=crop&w=600&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1507434965515-61970f2bd7c6?auto=format&fit=crop&w=600&q=80',
     category: 'Daily Wisdom',
     tags: ['Bible', 'Spirituality', 'Devotional'],
     benefits: [
@@ -425,7 +425,7 @@ export const archangelsData = [
     properties: ['White light of purity', 'Messages in dreams', 'Spiritual creativity'],
     description: 'The 222Hz frequency resonates with Archangel Gabriel, facilitating the reception of clear spiritual guidance and strengthening speech and mental clarity.',
     audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3',
-    imageUrl: 'https://images.unsplash.com/photo-1504052434569-70ad58565b90?auto=format&fit=crop&w=200&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=200&q=80'
   },
   {
     id: 'arch-rafael',

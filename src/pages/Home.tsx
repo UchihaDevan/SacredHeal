@@ -13,8 +13,7 @@ import {
   Trophy,
   MessageSquare,
   Volume2,
-  VolumeX,
-  Star
+  VolumeX
 } from 'lucide-react';
 import { dailyVerses } from '../data/biblicalVerses';
 import { products } from '../data/products';
@@ -169,72 +168,6 @@ const BenefitsSection: React.FC = () => {
   );
 };
 
-// 4. TestimonialsSection Component
-const TestimonialsSection: React.FC = () => {
-  const testimonials = [
-    {
-      name: 'Sarah Johnson',
-      role: 'Devoted Mother & Teacher',
-      text: 'The 528Hz frequency and the daily anointed prayers brought absolute peace to our family during a tough season of sickness.',
-      rating: 5,
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80'
-    },
-    {
-      name: 'Michael Chen',
-      role: 'Community Ministry Leader',
-      text: 'Chatting with Pastor Caleb gives prompt biblical references that guide my scripture studies. The pure tone oscillators are phenomenal.',
-      rating: 5,
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80'
-    },
-    {
-      name: 'Emma Rodriguez',
-      role: 'Faith Practitioner',
-      text: 'Logging my prayer streak daily has built a spiritual discipline I never had. I download the PDFs to read offline every morning.',
-      rating: 5,
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80'
-    }
-  ];
-
-  return (
-    <section className="py-8" aria-labelledby="testimonials-heading">
-      <div className="text-center max-w-2xl mx-auto mb-10">
-        <h2 id="testimonials-heading" className="text-3xl font-serif font-bold text-slate-100">
-          Loved by the Faithful
-        </h2>
-        <div className="w-16 h-0.5 bg-spiritual-gold mx-auto mt-3" />
-        <p className="text-sm text-slate-400 mt-3 leading-relaxed">
-          Read genuine testimonies of healing, peace, and spiritual growth experienced by our community.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {testimonials.map((t, idx) => (
-          <div key={idx} className="p-6 rounded-2xl glass-effect border border-white/5 flex flex-col justify-between shadow-lg relative overflow-hidden">
-            <div className="absolute right-0 bottom-0 -mb-8 -mr-8 w-24 h-24 rounded-full bg-spiritual-gold/5 blur-2xl pointer-events-none" />
-            <div>
-              {/* Rating */}
-              <div className="flex gap-0.5 mb-4" aria-label={`Rating: ${t.rating} out of 5 stars`}>
-                {[...Array(t.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-spiritual-gold text-spiritual-gold" />
-                ))}
-              </div>
-              <p className="text-slate-300 text-xs italic leading-relaxed mb-6">"{t.text}"</p>
-            </div>
-
-            {/* Author details */}
-            <div className="flex items-center gap-3 border-t border-white/5 pt-4 mt-2">
-              <img src={t.image} alt={t.name} className="w-9 h-9 rounded-full object-cover border border-spiritual-gold/20" />
-              <div>
-                <p className="font-serif font-bold text-slate-200 text-xs">{t.name}</p>
-                <p className="text-[10px] text-slate-400">{t.role}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
 
 // 5. NewsletterSection Component
 const NewsletterSection: React.FC = () => {
@@ -608,10 +541,7 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 6. Testimonials / Social Proof */}
-      <TestimonialsSection />
-
-      {/* 7. Newsletter Signup */}
+      {/* 6. Newsletter Signup */}
       <NewsletterSection />
     </div>
   );

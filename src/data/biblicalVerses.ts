@@ -14,7 +14,7 @@ export const dailyVerses: Omit<VerseData, 'book' | 'tags'>[] = [
     verse: 'For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope.',
     reference: 'Jeremiah 29:11',
     interpretation: "This passage guarantees us that God's will for our lives is goodness and abundance. Even if today's circumstances seem uncertain, the divine tomorrow is safe and prosperous.",
-    imageUrl: 'https://images.unsplash.com/photo-1504052434569-70ad58565b90?auto=format&fit=crop&w=600&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1507434965515-61970f2bd7c6?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'dv-2',
