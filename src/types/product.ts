@@ -15,4 +15,7 @@ export interface Product {
   isComingSoon?: boolean;
   isPremium?: boolean;
   edition?: string; // para orações (ex: "2023", "2023 - Segunda Edição")
+  frequency?: number;
+  waveform?: 'sine' | 'square' | 'triangle' | 'sawtooth';
+  audioType?: 'external' | 'generated' | 'binaural';
 }

@@ -159,6 +159,7 @@ export const MainContent: React.FC = () => {
                     {/* Pure Tone Button */}
                     <button
                       onClick={() => handleTogglePureTone(freq.hz)}
+                      aria-label={isPurePlaying ? `Mute pure tone of ${freq.hz} Hz` : `Play pure tone of ${freq.hz} Hz`}
                       className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
                         isPurePlaying
                           ? 'bg-rose-500/20 text-rose-300 border-rose-500/30'
@@ -171,6 +172,7 @@ export const MainContent: React.FC = () => {
                     {/* Play MVP Track Button */}
                     <button
                       onClick={() => handlePlayTrack(freq)}
+                      aria-label={isPlayingThis ? `Pause ${freq.name} audio` : `Play ${freq.name} audio`}
                       className={`p-2.5 rounded-xl transition-all ${
                         isPlayingThis
                           ? 'bg-spiritual-gold text-slate-900 shadow-[0_0_15px_rgba(199,167,92,0.3)]'

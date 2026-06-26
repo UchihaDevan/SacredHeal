@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { Howl } from 'howler';
 import type { Track } from '../types';
+import { audioGenerator } from '../services/audioGenerator';
 
 interface AudioStoreState {
   currentTrack: Track | null;
@@ -11,7 +12,7 @@ interface AudioStoreState {
   playlist: Track[];
   playlistIndex: number;
   
-  play: (track: Track, newPlaylist?: Track[]) => void;
+  play: (track: Track, newPlaylist?: Track[]) => Promise<void>;
   pause: () => void;
   resume: () => void;
   stop: () => void;
@@ -29,17 +30,53 @@ export const useAudioStore = create<AudioStoreState>((set, get) => {
   const startProgressTimer = () => {
     if (progressInterval) clearInterval(progressInterval);
     progressInterval = window.setInterval(() => {
-      if (activeHowl && activeHowl.playing()) {
+      const state = get();
+      if (!state.isPlaying) return;
+
+      if (state.currentTrack?.audioType === 'generated' || state.currentTrack?.audioType === 'binaural') {
+        const nextTime = state.currentTime + 1;
+        if (nextTime >= state.duration) {
+          stopProgressTimer();
+          set({ isPlaying: false, currentTime: 0 });
+          get().nextTrack();
+        } else {
+          set({ currentTime: nextTime });
+        }
+      } else if (activeHowl && activeHowl.playing()) {
         const time = activeHowl.seek();
         set({ currentTime: typeof time === 'number' ? Math.floor(time) : 0 });
       }
-    }, 250);
+    }, 1000);
   };
 
   const stopProgressTimer = () => {
     if (progressInterval) {
       clearInterval(progressInterval);
       progressInterval = null;
+    }
+  };
+
+  const playGeneratedTrack = async (track: Track, startTime = 0) => {
+    const volumeDb = -20 + get().volume * 15; // Mapeia volume (0-1) para dB (ex: -20dB a -5dB)
+    const remaining = track.duration - startTime;
+
+    if (remaining <= 0) return;
+
+    if (track.audioType === 'generated' && track.frequency) {
+      await audioGenerator.playFrequency({
+        frequency: track.frequency,
+        duration: remaining,
+        waveform: track.waveform || 'sine',
+        volume: volumeDb,
+        fadeIn: 0.5,
+        fadeOut: 0.5
+      });
+    } else if (track.audioType === 'binaural' && track.frequency) {
+      await audioGenerator.playBinauralBeats(
+        track.frequency,
+        40, // 40 Hz offset para ondas gama/alfa
+        remaining
+      );
     }
   };
 
@@ -52,7 +89,7 @@ export const useAudioStore = create<AudioStoreState>((set, get) => {
     playlist: [],
     playlistIndex: -1,
 
-    play: (track: Track, newPlaylist?: Track[]) => {
+    play: async (track: Track, newPlaylist?: Track[]) => {
       const state = get();
       
       // Se for a mesma música tocando, apenas resume
@@ -65,7 +102,9 @@ export const useAudioStore = create<AudioStoreState>((set, get) => {
       if (activeHowl) {
         activeHowl.stop();
         activeHowl.unload();
+        activeHowl = null;
       }
+      audioGenerator.stop();
       stopProgressTimer();
 
       // Configurar playlist se uma nova lista for fornecida
@@ -76,78 +115,97 @@ export const useAudioStore = create<AudioStoreState>((set, get) => {
         nextPlaylist = newPlaylist;
         nextIndex = newPlaylist.findIndex((t) => t.id === track.id);
       } else {
-        // Se a faixa já existe na playlist atual, localiza o índice
         const index = nextPlaylist.findIndex((t) => t.id === track.id);
         if (index !== -1) {
           nextIndex = index;
         } else {
-          // Se não existir, insere e seleciona
           nextPlaylist = [...nextPlaylist, track];
           nextIndex = nextPlaylist.length - 1;
         }
       }
 
-      // Criar novo Howl
-      const sound = new Howl({
-        src: [track.url],
-        html5: true, // Importante para reproduzir links externos grandes e fluidez
-        volume: state.volume,
-        onload: () => {
-          set({ duration: Math.floor(sound.duration()) });
-        },
-        onplay: () => {
-          set({ isPlaying: true });
-          startProgressTimer();
-        },
-        onpause: () => {
-          set({ isPlaying: false });
-          stopProgressTimer();
-        },
-        onstop: () => {
-          set({ isPlaying: false, currentTime: 0 });
-          stopProgressTimer();
-        },
-        onend: () => {
-          set({ isPlaying: false, currentTime: 0 });
-          stopProgressTimer();
-          get().nextTrack(); // Passa para a próxima automaticamente
-        },
-        onloaderror: (_, err) => {
-          console.error('Erro ao carregar áudio:', err);
-          set({ isPlaying: false });
-        },
-        onplayerror: (_, err) => {
-          console.error('Erro ao reproduzir áudio:', err);
-          set({ isPlaying: false });
-        }
-      });
-
-      activeHowl = sound;
-      sound.play();
+      const isGenerated = track.audioType === 'generated' || track.audioType === 'binaural';
 
       set({
         currentTrack: track,
         playlist: nextPlaylist,
         playlistIndex: nextIndex,
         currentTime: 0,
+        duration: track.duration,
         isPlaying: true,
       });
+
+      if (isGenerated) {
+        await playGeneratedTrack(track, 0);
+        startProgressTimer();
+      } else if (track.url) {
+        // Criar novo Howl para links externos
+        const sound = new Howl({
+          src: [track.url],
+          html5: true,
+          volume: state.volume,
+          onload: () => {
+            set({ duration: Math.floor(sound.duration()) });
+          },
+          onplay: () => {
+            set({ isPlaying: true });
+            startProgressTimer();
+          },
+          onpause: () => {
+            set({ isPlaying: false });
+            stopProgressTimer();
+          },
+          onstop: () => {
+            set({ isPlaying: false, currentTime: 0 });
+            stopProgressTimer();
+          },
+          onend: () => {
+            set({ isPlaying: false, currentTime: 0 });
+            stopProgressTimer();
+            get().nextTrack();
+          },
+          onloaderror: (_, err) => {
+            console.error('Erro ao carregar áudio:', err);
+            set({ isPlaying: false });
+          },
+          onplayerror: (_, err) => {
+            console.error('Erro ao reproduzir áudio:', err);
+            set({ isPlaying: false });
+          }
+        });
+
+        activeHowl = sound;
+        sound.play();
+      }
     },
 
     pause: () => {
-      if (activeHowl && activeHowl.playing()) {
+      const state = get();
+      if (state.currentTrack?.audioType === 'generated' || state.currentTrack?.audioType === 'binaural') {
+        audioGenerator.stop();
+      } else if (activeHowl && activeHowl.playing()) {
         activeHowl.pause();
       }
+      set({ isPlaying: false });
+      stopProgressTimer();
     },
 
     resume: () => {
       const state = get();
-      if (activeHowl) {
+      if (!state.currentTrack) return;
+
+      const isGenerated = state.currentTrack.audioType === 'generated' || state.currentTrack.audioType === 'binaural';
+
+      set({ isPlaying: true });
+
+      if (isGenerated) {
+        playGeneratedTrack(state.currentTrack, state.currentTime);
+        startProgressTimer();
+      } else if (activeHowl) {
         if (!activeHowl.playing()) {
           activeHowl.play();
         }
-      } else if (state.currentTrack) {
-        // Se há uma faixa selecionada mas sem Howl ativo, recria
+      } else {
         get().play(state.currentTrack);
       }
     },
@@ -158,6 +216,7 @@ export const useAudioStore = create<AudioStoreState>((set, get) => {
         activeHowl.unload();
         activeHowl = null;
       }
+      audioGenerator.stop();
       stopProgressTimer();
       set({ currentTrack: null, isPlaying: false, currentTime: 0, duration: 0 });
     },
@@ -171,9 +230,18 @@ export const useAudioStore = create<AudioStoreState>((set, get) => {
     },
 
     setCurrentTime: (time: number) => {
-      if (activeHowl) {
-        activeHowl.seek(time);
-        set({ currentTime: Math.floor(time) });
+      const state = get();
+      const targetTime = Math.floor(time);
+
+      if (state.currentTrack?.audioType === 'generated' || state.currentTrack?.audioType === 'binaural') {
+        audioGenerator.stop();
+        set({ currentTime: targetTime });
+        if (state.isPlaying) {
+          playGeneratedTrack(state.currentTrack, targetTime);
+        }
+      } else if (activeHowl) {
+        activeHowl.seek(targetTime);
+        set({ currentTime: targetTime });
       }
     },
 
@@ -189,14 +257,13 @@ export const useAudioStore = create<AudioStoreState>((set, get) => {
       const { playlist, playlistIndex, currentTime } = get();
       if (playlist.length === 0) return;
 
-      // Se passou de 3 segundos, reinicia a faixa atual, senão vai para a anterior
       if (currentTime > 3) {
         get().setCurrentTime(0);
         return;
       }
 
-      const prevIndex = (playlistIndex - 1 + playlist.length) % playlist.length;
-      get().play(playlist[prevIndex]);
+      const prevIndex = (prevIndex: number) => (prevIndex - 1 + playlist.length) % playlist.length;
+      get().play(playlist[prevIndex(playlistIndex)]);
     },
 
     setPlaylist: (playlist: Track[]) => {

@@ -3,10 +3,13 @@ export interface Track {
   name: string;
   hz?: number;
   duration: number; // em segundos
-  url: string; // link público de áudio
+  url?: string; // link público de áudio (opcional para gerados)
   imageUrl: string;
   category: string;
   description?: string;
+  frequency?: number;
+  waveform?: 'sine' | 'square' | 'triangle' | 'sawtooth';
+  audioType?: 'external' | 'generated' | 'binaural';
 }
 
 export interface AudioState {

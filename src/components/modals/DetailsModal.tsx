@@ -4,6 +4,7 @@ import { X, Heart, Play, Mail, CheckCircle, Clock } from 'lucide-react';
 import type { Product } from '../../types';
 import { useUserStore } from '../../store/userStore';
 import { useAudioStore } from '../../store/audioStore';
+import { DivineCodePreview } from './DivineCodePreview';
 
 interface DetailsModalProps {
   product: Product;
@@ -47,6 +48,12 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
     const timer = setInterval(calculateTimeLeft, 1000);
     return () => clearInterval(timer);
   }, [product]);
+
+  const [showDivineCodePreview, setShowDivineCodePreview] = useState(false);
+
+  if (showDivineCodePreview) {
+    return <DivineCodePreview onClose={() => { setShowDivineCodePreview(false); onClose(); }} />;
+  }
 
   const toggleFavorite = () => {
     if (isFavorite) {
@@ -262,6 +269,13 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
                 className="flex-1 py-3 rounded-xl gold-bg-gradient text-slate-900 font-bold hover:scale-[1.01] active:scale-95 transition-all text-center shadow-[0_4px_15px_rgba(199,167,92,0.3)]"
               >
                 Open Interactive Experience
+              </button>
+            ) : product.id === 'divine-code' ? (
+              <button
+                onClick={() => setShowDivineCodePreview(true)}
+                className="flex-1 py-3 rounded-xl gold-bg-gradient text-slate-900 font-bold hover:scale-[1.01] active:scale-95 transition-all text-center shadow-[0_4px_15px_rgba(199,167,92,0.3)]"
+              >
+                Open Preview
               </button>
             ) : (
               <button

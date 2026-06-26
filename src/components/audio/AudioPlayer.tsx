@@ -64,6 +64,8 @@ export const AudioPlayer: React.FC = () => {
 
   return (
     <div
+      role="region"
+      aria-label="Audio player"
       className={`glass-effect-dark border-t border-white/10 px-4 py-3 md:px-8 flex flex-col md:flex-row items-center justify-between gap-3 shadow-[0_-15px_30px_rgba(0,0,0,0.5)] transition-all duration-300 ${
         isMinimized ? 'h-12 md:h-12' : 'h-auto md:h-24'
       }`}
@@ -124,6 +126,7 @@ export const AudioPlayer: React.FC = () => {
                 onClick={previousTrack}
                 className="p-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/5 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
                 title="Previous Track"
+                aria-label="Previous track"
               >
                 <SkipBack className="w-5 h-5" />
               </button>
@@ -131,6 +134,7 @@ export const AudioPlayer: React.FC = () => {
                 onClick={handlePlayPause}
                 className="p-3 rounded-full gold-bg-gradient text-slate-900 hover:scale-105 transition-all shadow-[0_0_15px_rgba(199,167,92,0.3)]"
                 title={isPlaying ? 'Pause' : 'Play'}
+                aria-label={isPlaying ? 'Pause track' : 'Play track'}
               >
                 {isPlaying ? <Pause className="w-5 h-5 fill-slate-900" /> : <Play className="w-5 h-5 fill-slate-900" />}
               </button>
@@ -138,6 +142,7 @@ export const AudioPlayer: React.FC = () => {
                 onClick={nextTrack}
                 className="p-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/5 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
                 title="Next Track"
+                aria-label="Next track"
               >
                 <SkipForward className="w-5 h-5" />
               </button>
