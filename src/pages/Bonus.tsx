@@ -5,22 +5,18 @@ import { prayers } from '../data/prayers';
 import { biblicalWisdom } from '../data/biblicalVerses';
 import { testimonials } from '../data/testimonials';
 import { ProductCard } from '../components/cards/ProductCard';
-import type { Product } from '../types';
+import { useLayoutContext } from '../hooks/useLayoutContext';
 
-interface BonusProps {
-  onOpenDetails: (product: Product) => void;
-  onNavigateToTab: (tabId: string) => void;
-}
-
-export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) => {
+export const Bonus: React.FC = () => {
+  const { onOpenDetails } = useLayoutContext();
   const [subTab, setSubTab] = useState<'prayers' | 'wisdom' | 'testimonials' | 'downloads'>('prayers');
   
-  // Estados de busca local
+  // Local search states
   const [wisdomQuery, setWisdomQuery] = useState('');
   const [testimonialCategory, setTestimonialCategory] = useState<string>('All');
   const [recitedPrayers, setRecitedPrayers] = useState<string[]>([]);
 
-  // Filtrar sabedoria bíblica
+  // Filter biblical wisdom
   const filteredWisdom = biblicalWisdom.filter((item) => {
     const q = wisdomQuery.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     const verse = item.verse.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -31,7 +27,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
     return verse.includes(q) || ref.includes(q) || book.includes(q) || tags.some((t) => t.includes(q));
   });
 
-  // Filtrar depoimentos
+  // Filter testimonials
   const filteredTestimonials = testimonialCategory === 'All'
     ? testimonials
     : testimonials.filter((t) => t.category === testimonialCategory);
@@ -47,7 +43,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       
-      {/* Cabeçalho */}
+      {/* Header */}
       <div className="space-y-2">
         <div className="flex items-center gap-2">
           <Gift className="w-5 h-5 text-emerald-400" />
@@ -63,7 +59,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
         </p>
       </div>
 
-      {/* Sub-Navegação (Abas) */}
+      {/* Sub-Navigation (Tabs) */}
       <div className="flex border-b border-white/5 gap-2 scrollbar-none overflow-x-auto">
         <button
           onClick={() => setSubTab('prayers')}
@@ -107,7 +103,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
         </button>
       </div>
 
-      {/* Aba 1: Orações Ungidas */}
+      {/* Tab 1: Anointed Prayers */}
       {subTab === 'prayers' && (
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -126,7 +122,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
                       </span>
                       {prayer.recommendedTime && (
                         <span className="text-[10px] text-slate-400 font-semibold">
-                          Recomendado: {prayer.recommendedTime}
+                          Recommended: {prayer.recommendedTime}
                         </span>
                       )}
                     </div>
@@ -139,7 +135,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
                       {prayer.instructions}
                     </p>
 
-                    {/* Texto da Oração */}
+                    {/* Prayer Text */}
                     <div className="bg-spiritual-dark/50 p-4 rounded-2xl border border-white/5 max-h-48 overflow-y-auto">
                       <p className="text-xs text-slate-300 leading-relaxed whitespace-pre-line text-center font-serif">
                         {prayer.text}
@@ -170,10 +166,10 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
         </div>
       )}
 
-      {/* Aba 2: Sabedoria Bíblica */}
+      {/* Tab 2: Biblical Wisdom */}
       {subTab === 'wisdom' && (
         <div className="space-y-6">
-          {/* Barra de pesquisa local */}
+          {/* Local search bar */}
           <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-spiritual-indigo/20 border border-white/5 max-w-md">
             <Search className="w-4 h-4 text-emerald-400 shrink-0" />
             <input
@@ -185,7 +181,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
             />
           </div>
 
-          {/* Grid de Provérbios */}
+          {/* Proverbs Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredWisdom.map((item) => (
               <div
@@ -227,10 +223,10 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
         </div>
       )}
 
-      {/* Aba 3: Depoimentos de Fé */}
+      {/* Tab 3: Faith Testimonies */}
       {subTab === 'testimonials' && (
         <div className="space-y-6">
-          {/* Filtro de Categoria */}
+          {/* Category Filter */}
           <div className="flex gap-2 scrollbar-none overflow-x-auto">
             {['All', 'Physical Healing', 'Prosperity', 'Mental Peace'].map((cat) => (
               <button
@@ -247,7 +243,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
             ))}
           </div>
 
-          {/* Grid Depoimentos */}
+          {/* Testimonials Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {filteredTestimonials.map((item) => (
               <div
@@ -255,7 +251,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
                 className="rounded-3xl glass-effect p-6 flex flex-col justify-between border border-white/5 shadow-xl relative"
               >
                 <div>
-                  {/* Estrelas */}
+                  {/* Stars */}
                   <div className="flex items-center gap-0.5 mb-4">
                     {[...Array(item.rating)].map((_, i) => (
                       <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
@@ -284,7 +280,7 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
         </div>
       )}
 
-      {/* Aba 4: Recursos Premium / Downloads */}
+      {/* Tab 4: Premium Resources / Downloads */}
       {subTab === 'downloads' && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {bonusCards.map((product) => (
@@ -292,7 +288,6 @@ export const Bonus: React.FC<BonusProps> = ({ onOpenDetails, onNavigateToTab }) 
               key={product.id}
               product={product}
               onOpenDetails={onOpenDetails}
-              onNavigateToTab={onNavigateToTab}
             />
           ))}
         </div>

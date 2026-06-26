@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Heart, Play, MessageSquare, Award, ArrowRight, Lock } from 'lucide-react';
 import type { Product } from '../../types';
 import { useUserStore } from '../../store/userStore';
@@ -7,14 +8,13 @@ import { useAudioStore } from '../../store/audioStore';
 interface ProductCardProps {
   product: Product;
   onOpenDetails: (product: Product) => void;
-  onNavigateToTab: (tabId: string) => void;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
-  onOpenDetails,
-  onNavigateToTab
+  onOpenDetails
 }) => {
+  const navigate = useNavigate();
   const { favorites, addFavorite, removeFavorite } = useUserStore();
   const playTrack = useAudioStore((state) => state.play);
 
@@ -50,19 +50,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       return;
     }
 
-    // Se for o chat, navega para a aba de chat
+    // If it's the chat, navigate to chat route
     if (product.id === 'chat-pastor') {
-      onNavigateToTab('chat');
+      navigate('/chat');
       return;
     }
 
-    // Se for o desafio sagrado, navega para a aba de desafio
+    // If it's the sacred challenge, navigate to challenge route
     if (product.id === 'sacred-challenge') {
-      onNavigateToTab('challenge');
+      navigate('/challenge');
       return;
     }
 
-    // Caso padrão, abre o modal de detalhes
+    // Default case, open details modal
     onOpenDetails(product);
   };
 
@@ -71,7 +71,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       onClick={() => onOpenDetails(product)}
       className="group relative flex flex-col rounded-2xl glass-effect border border-white/5 overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:border-spiritual-gold/20 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)] cursor-pointer"
     >
-      {/* Imagem de Capa */}
+      {/* Cover Image */}
       <div className="relative aspect-video w-full overflow-hidden bg-spiritual-indigo/20">
         <img
           src={product.imageUrl}
@@ -79,10 +79,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
-        {/* Overlay de proteção/gradiente */}
+        {/* Overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-spiritual-dark/80 via-transparent to-transparent" />
         
-        {/* Botão de Favorito (Coração) */}
+        {/* Favorite Button (Heart) */}
         <button
           onClick={toggleFavorite}
           className="absolute top-3 right-3 p-2 rounded-full bg-spiritual-dark/60 backdrop-blur-md border border-white/5 text-slate-300 hover:text-rose-500 hover:scale-110 active:scale-95 transition-all"
@@ -91,7 +91,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <Heart className={`w-4 h-4 ${isFavorite ? 'fill-rose-500 text-rose-500' : ''}`} />
         </button>
 
-        {/* Badges no Canto Esquerdo */}
+        {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-1.5">
           {product.isPremium && (
             <span className="flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">
@@ -100,13 +100,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           )}
           {product.isComingSoon && (
             <span className="px-2.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 animate-pulse">
-              BREVE
+              COMING SOON
             </span>
           )}
         </div>
       </div>
 
-      {/* Conteúdo */}
+      {/* Content */}
       <div className="flex-1 p-5 flex flex-col justify-between">
         <div>
           <div className="flex items-center justify-between mb-1.5">
@@ -129,7 +129,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </p>
         </div>
 
-        {/* Rodapé do Card com Botão de Ação */}
+        {/* Card Footer with Action Button */}
         <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between">
           <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-widest">
             {product.isComingSoon ? 'Learn More' : product.audioUrl ? 'Play Now' : 'Access'}

@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MessageSquare, X } from 'lucide-react';
 
-interface ChatWidgetProps {
-  onNavigateToTab: (tabId: string) => void;
-}
-
-export const ChatWidget: React.FC<ChatWidgetProps> = ({ onNavigateToTab }) => {
+export const ChatWidget: React.FC = () => {
+  const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
   const [hasNotification, setHasNotification] = useState(false);
   const [bounce, setBounce] = useState(false);
 
   useEffect(() => {
-    // 1. Após 8 segundos, o Pastor Caleb "envia" uma notificação simulada
+    // After 8 seconds, Pastor Caleb "sends" a simulated notification
     const notificationTimer = setTimeout(() => {
       setHasNotification(true);
       setShowPopup(true);
       setBounce(true);
       
-      // Para a animação de balanço após 4 segundos para não incomodar o usuário
+      // Stop bounce animation after 4 seconds to not annoy the user
       setTimeout(() => setBounce(false), 4000);
     }, 8000);
 
@@ -25,20 +23,20 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onNavigateToTab }) => {
   }, []);
 
   const handleWidgetClick = () => {
-    onNavigateToTab('chat');
+    navigate('/chat');
     setHasNotification(false);
     setShowPopup(false);
   };
 
   const handleClosePopup = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Evita navegar para a aba ao clicar no botão Fechar
+    e.stopPropagation(); // Prevent navigating to chat tab when clicking Close
     setShowPopup(false);
   };
 
   return (
     <div className="fixed bottom-24 md:bottom-28 right-6 z-40 flex flex-col items-end gap-3 pointer-events-none">
       
-      {/* Balão de Pop-up dinâmico */}
+      {/* Dynamic Pop-up Bubble */}
       {showPopup && (
         <div className="pointer-events-auto max-w-[240px] bg-slate-900/95 dark:bg-spiritual-navy/95 text-slate-100 p-3.5 rounded-2xl border border-spiritual-gold/30 shadow-2xl animate-in slide-in-from-bottom-2 duration-300 relative flex items-start gap-2.5">
           <div className="flex-1">
@@ -57,12 +55,12 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onNavigateToTab }) => {
             <X className="w-3 h-3" />
           </button>
           
-          {/* Seta do Pop-up apontando para o botão */}
+          {/* Pop-up arrow pointing to the button */}
           <div className="absolute right-6 -bottom-1.5 w-3 h-3 bg-slate-900 dark:bg-spiritual-navy border-r border-b border-spiritual-gold/30 rotate-45" />
         </div>
       )}
 
-      {/* Botão Flutuante */}
+      {/* Floating Button */}
       <button
         onClick={handleWidgetClick}
         className={`pointer-events-auto p-4 rounded-full gold-bg-gradient text-slate-900 shadow-[0_10px_25px_rgba(199,167,92,0.4)] transition-all hover:scale-110 active:scale-95 relative border border-spiritual-gold-light/20 ${
@@ -72,7 +70,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onNavigateToTab }) => {
       >
         <MessageSquare className="w-6 h-6 fill-slate-950" />
         
-        {/* Ponto Vermelho de Notificação */}
+        {/* Red Notification Dot */}
         {hasNotification && (
           <span className="absolute top-0 right-0 w-3.5 h-3.5 bg-rose-500 border-2 border-slate-900 rounded-full animate-pulse" />
         )}

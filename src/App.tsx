@@ -1,21 +1,23 @@
-import { useState, useEffect } from 'react';
-import { Layout } from './components/layout/Layout';
+import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { RootLayout } from './components/layout/RootLayout';
 import { Home } from './pages/Home';
 import { MainContent } from './pages/MainContent';
 import { Premium } from './pages/Premium';
 import { Bonus } from './pages/Bonus';
 import { ChatPastor } from './pages/ChatPastor';
 import { SacredChallenge } from './pages/SacredChallenge';
-import { DetailsModal } from './components/modals/DetailsModal';
-import type { Product } from './types';
+import { ProsperityExperience } from './pages/ProsperityExperience';
+import { MentalExperience } from './pages/MentalExperience';
+import { AcceleratorExperience } from './pages/AcceleratorExperience';
+import { TurboExperience } from './pages/TurboExperience';
+import { SanctuaryExperience } from './pages/SanctuaryExperience';
 import { useUserStore } from './store/userStore';
 
 function App() {
-  const [activeTab, setActiveTab] = useState<string>('home');
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { preferences } = useUserStore();
 
-  // Aplica o tema dark/light globalmente com base nas preferências
+  // Apply dark/light theme globally based on preferences
   useEffect(() => {
     if (preferences.theme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -24,46 +26,28 @@ function App() {
     }
   }, [preferences.theme]);
 
-  // Função para abrir o modal de detalhes do produto
-  const handleOpenDetails = (product: Product) => {
-    setSelectedProduct(product);
-  };
-
-  // Renderização dinâmica baseada na aba ativa
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'home':
-        return <Home onOpenDetails={handleOpenDetails} onNavigateToTab={setActiveTab} />;
-      case 'main':
-        return <MainContent onOpenDetails={handleOpenDetails} onNavigateToTab={setActiveTab} />;
-      case 'premium':
-        return <Premium onOpenDetails={handleOpenDetails} onNavigateToTab={setActiveTab} />;
-      case 'bonus':
-        return <Bonus onOpenDetails={handleOpenDetails} onNavigateToTab={setActiveTab} />;
-      case 'chat':
-        return <ChatPastor />;
-      case 'challenge':
-        return <SacredChallenge />;
-      default:
-        return <Home onOpenDetails={handleOpenDetails} onNavigateToTab={setActiveTab} />;
-    }
-  };
-
   return (
-    <>
-      <Layout activeTab={activeTab} onTabChange={setActiveTab}>
-        {renderContent()}
-      </Layout>
-
-      {/* Modal global de Detalhes do Produto */}
-      {selectedProduct && (
-        <DetailsModal
-          product={selectedProduct}
-          onClose={() => setSelectedProduct(null)}
-          onNavigateToTab={setActiveTab}
-        />
-      )}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<RootLayout />}>
+          <Route index element={<Navigate to="/home" replace />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/frequencies" element={<MainContent />} />
+          <Route path="/premium" element={<Premium />} />
+          <Route path="/bonus" element={<Bonus />} />
+          <Route path="/chat" element={<ChatPastor />} />
+          <Route path="/challenge" element={<SacredChallenge />} />
+          {/* Experience pages */}
+          <Route path="/experience/prosperity" element={<ProsperityExperience />} />
+          <Route path="/experience/mental" element={<MentalExperience />} />
+          <Route path="/experience/accelerator" element={<AcceleratorExperience />} />
+          <Route path="/experience/turbo" element={<TurboExperience />} />
+          <Route path="/experience/sanctuary" element={<SanctuaryExperience />} />
+          {/* Fallback */}
+          <Route path="*" element={<Navigate to="/home" replace />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

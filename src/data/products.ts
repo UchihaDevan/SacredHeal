@@ -362,5 +362,45 @@ export const archangelsData = [
     description: "Resonate with Rafael's 333Hz to channel heavenly healing energies over physical pain and wounds of the soul.",
     audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3',
     imageUrl: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=200&q=80'
+  },
+  {
+    id: 'arch-uriel',
+    name: 'Archangel Uriel - Wisdom and Divine Light',
+    hz: 444,
+    role: 'Angel of Wisdom, Illumination and Divine Service',
+    properties: ['Golden flame of enlightenment', 'Clarity in decisions and studies', 'Connection to divine knowledge'],
+    description: 'The 444Hz frequency of Archangel Uriel illuminates the mind with divine wisdom, bringing clarity to decisions and guidance through moments of doubt and confusion.',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3',
+    imageUrl: 'https://images.unsplash.com/photo-1507400492013-162706c8c05e?auto=format&fit=crop&w=200&q=80'
+  },
+  {
+    id: 'arch-chamuel',
+    name: 'Archangel Chamuel - Love and Relationships',
+    hz: 555,
+    role: 'Angel of Unconditional Love and Compassion',
+    properties: ['Pink ray of universal love', 'Healing broken relationships', 'Attracting soulmate connections'],
+    description: 'The 555Hz frequency resonates with Archangel Chamuel\'s energy of pure love, helping to heal emotional wounds, strengthen bonds, and attract meaningful relationships.',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3',
+    imageUrl: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=200&q=80'
+  },
+  {
+    id: 'arch-jofiel',
+    name: 'Archangel Jophiel - Beauty and Positive Thinking',
+    hz: 777,
+    role: 'Angel of Beauty, Wisdom and Joyful Thoughts',
+    properties: ['Yellow ray of divine beauty', 'Transformation of negative thoughts', 'Inspiration and creative vision'],
+    description: 'The 777Hz frequency of Archangel Jophiel purifies the mind from negative patterns, replacing them with beautiful thoughts, creative inspiration, and a joyful perspective on life.',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3',
+    imageUrl: 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=200&q=80'
+  },
+  {
+    id: 'arch-zadquiel',
+    name: 'Archangel Zadkiel - Mercy and Transmutation',
+    hz: 888,
+    role: 'Angel of Mercy, Freedom and Spiritual Transmutation',
+    properties: ['Violet flame of transmutation', 'Release of karmic patterns', 'Divine mercy and forgiveness'],
+    description: 'The 888Hz frequency of Archangel Zadkiel invokes the violet flame of transmutation, releasing past karmic burdens and filling the spirit with divine mercy and unconditional forgiveness.',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3',
+    imageUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&q=80'
   }
 ];

@@ -15,7 +15,7 @@ export default defineConfig({
       manifest: {
         name: 'Sacred Heal App',
         short_name: 'SacredHeal',
-        description: 'Aplicativo espiritual de curas por frequências Hz, versículos bíblicos e orações ungidas',
+        description: 'Spiritual healing app with Hz frequencies, biblical verses and anointed prayers',
         theme_color: '#0a0a16',
         background_color: '#0a0a16',
         display: 'standalone',

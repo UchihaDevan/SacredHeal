@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { BookOpen, Sparkles, Award, Heart, Copy, Check } from 'lucide-react';
 import { dailyVerses } from '../data/biblicalVerses';
 import { products } from '../data/products';
 import { ProductCard } from '../components/cards/ProductCard';
-import type { Product } from '../types';
 import { useUserStore } from '../store/userStore';
 import { useChallengeStore } from '../store/challengeStore';
+import { useLayoutContext } from '../hooks/useLayoutContext';
 
-interface HomeProps {
-  onOpenDetails: (product: Product) => void;
-  onNavigateToTab: (tabId: string) => void;
-}
-
-export const Home: React.FC<HomeProps> = ({ onOpenDetails, onNavigateToTab }) => {
+export const Home: React.FC = () => {
+  const { onOpenDetails } = useLayoutContext();
+  const navigate = useNavigate();
   const { favorites, addFavorite, removeFavorite } = useUserStore();
   const challenges = useChallengeStore((state) => state.challenges);
   const [copied, setCopied] = useState(false);
 
-  // Seleciona o versículo do dia dinamicamente com base no dia do mês
+  // Selects the daily verse dynamically based on the day of the month
   const dayOfMonth = new Date().getDate();
   const verseIndex = dayOfMonth % dailyVerses.length;
   const currentVerse = dailyVerses[verseIndex];
@@ -39,17 +37,17 @@ export const Home: React.FC<HomeProps> = ({ onOpenDetails, onNavigateToTab }) =>
     }
   };
 
-  // Filtrar os produtos recomendados em destaque na Home (seleciona alguns dos 16)
+  // Featured recommended products on Home (selects some of the 16)
   const featuredProducts = products.filter(
     (p) => p.id === 'healing-vault' || p.id === 'chat-pastor' || p.id === 'sacred-challenge'
   );
 
-  // Encontra se existe algum desafio iniciado
+  // Find if there's a started challenge
   const activeChallenge = challenges.find((c) => c.startDate && !c.completed);
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
-      {/* Mensagem de Boas-Vindas */}
+      {/* Welcome Message */}
       <div className="space-y-2">
         <h1 className="text-4xl md:text-5xl font-serif font-bold text-slate-100 leading-tight">
           Your Journey of <span className="gold-text-gradient font-serif">Healing & Faith</span>
@@ -59,12 +57,12 @@ export const Home: React.FC<HomeProps> = ({ onOpenDetails, onNavigateToTab }) =>
         </p>
       </div>
 
-      {/* Grid Principal: Versículo do Dia + Status do Desafio */}
+      {/* Main Grid: Verse of the Day + Challenge Status */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        {/* Widget: Versículo do Dia */}
+        {/* Widget: Verse of the Day */}
         <div className="lg:col-span-2 relative rounded-3xl glass-effect p-6 md:p-8 flex flex-col justify-between overflow-hidden border border-white/5 shadow-xl">
-          {/* Fundo decorativo sutil */}
+          {/* Subtle decorative background */}
           <div className="absolute right-0 top-0 -mr-16 -mt-16 w-48 h-48 rounded-full bg-spiritual-gold/5 blur-3xl pointer-events-none" />
           
           <div>
@@ -89,7 +87,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenDetails, onNavigateToTab }) =>
             </p>
           </div>
 
-          {/* Ações do Versículo */}
+          {/* Verse Actions */}
           <div className="flex items-center gap-3 mt-6 pt-4 border-t border-white/5">
             <button
               onClick={handleFavoriteVerse}
@@ -119,7 +117,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenDetails, onNavigateToTab }) =>
           </div>
         </div>
 
-        {/* Widget: Estado do Desafio Sagrado */}
+        {/* Widget: Sacred Challenge Status */}
         <div className="rounded-3xl glass-effect p-6 flex flex-col justify-between border border-white/5 shadow-xl relative overflow-hidden">
           <div className="absolute right-0 bottom-0 -mb-16 -mr-16 w-48 h-48 rounded-full bg-purple-500/5 blur-3xl pointer-events-none" />
 
@@ -165,7 +163,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenDetails, onNavigateToTab }) =>
                   You do not have any active spiritual challenge at the moment. Create a daily habit of consecration and track your streaks.
                 </p>
                 <button
-                  onClick={() => onNavigateToTab('challenge')}
+                  onClick={() => navigate('/challenge')}
                   className="px-4 py-2 rounded-full text-xs font-bold bg-spiritual-gold/20 text-spiritual-gold border border-spiritual-gold/30 hover:bg-spiritual-gold hover:text-slate-900 transition-colors"
                 >
                   Start Challenge
@@ -184,14 +182,14 @@ export const Home: React.FC<HomeProps> = ({ onOpenDetails, onNavigateToTab }) =>
 
       </div>
 
-      {/* Seção: Recomendados em Destaque */}
+      {/* Section: Featured Recommendations */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl md:text-2xl font-serif font-bold text-slate-100">
             Recommended for You
           </h2>
           <button
-            onClick={() => onNavigateToTab('main')}
+            onClick={() => navigate('/frequencies')}
             className="text-xs font-bold text-spiritual-gold hover:underline"
           >
             View All Frequencies
@@ -204,7 +202,6 @@ export const Home: React.FC<HomeProps> = ({ onOpenDetails, onNavigateToTab }) =>
               key={product.id}
               product={product}
               onOpenDetails={onOpenDetails}
-              onNavigateToTab={onNavigateToTab}
             />
           ))}
         </div>

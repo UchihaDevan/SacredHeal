@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { X, Heart, Play, Mail, CheckCircle, Clock } from 'lucide-react';
 import type { Product } from '../../types';
 import { useUserStore } from '../../store/userStore';
@@ -7,14 +8,13 @@ import { useAudioStore } from '../../store/audioStore';
 interface DetailsModalProps {
   product: Product;
   onClose: () => void;
-  onNavigateToTab: (tabId: string) => void;
 }
 
 export const DetailsModal: React.FC<DetailsModalProps> = ({
   product,
-  onClose,
-  onNavigateToTab
+  onClose
 }) => {
+  const navigate = useNavigate();
   const { favorites, addFavorite, removeFavorite } = useUserStore();
   const playTrack = useAudioStore((state) => state.play);
   const isFavorite = favorites.includes(product.id);
@@ -22,7 +22,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
   const [email, setEmail] = useState('');
   const [emailSaved, setEmailSaved] = useState(false);
   
-  // Estado para contagem regressiva (Divine Energy Code - Lançamento 07/07)
+  // Countdown state (Divine Energy Code - Launch 07/07)
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
@@ -75,7 +75,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
     e.preventDefault();
     if (!email) return;
 
-    // Gravação simulada na lista de espera local
+    // Simulated waitlist registration in localStorage
     const waitlist = JSON.parse(localStorage.getItem('sacred-heal-waitlist') || '[]');
     localStorage.setItem(
       'sacred-heal-waitlist',
@@ -89,7 +89,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
       <div className="w-full max-w-2xl rounded-3xl glass-effect border border-white/10 overflow-hidden shadow-2xl flex flex-col md:flex-row animate-in fade-in zoom-in-95 duration-300">
         
-        {/* Banner esquerdo da Imagem */}
+        {/* Left Image Banner */}
         <div className="relative w-full md:w-5/12 aspect-video md:aspect-auto md:h-auto overflow-hidden bg-spiritual-indigo/10 shrink-0">
           <img
             src={product.imageUrl}
@@ -105,7 +105,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
           )}
         </div>
 
-        {/* Detalhes do Produto */}
+        {/* Product Details */}
         <div className="flex-1 p-6 md:p-8 flex flex-col justify-between max-h-[80vh] overflow-y-auto">
           {/* Header */}
           <div className="space-y-2">
@@ -137,7 +137,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
             </h2>
           </div>
 
-          {/* Descrição & Benefícios */}
+          {/* Description & Benefits */}
           <div className="my-6 space-y-4">
             <p className="text-sm text-slate-300 leading-relaxed">
               {product.description}
@@ -159,7 +159,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
               </div>
             )}
 
-            {/* Caso de Lançamento ( Divine Energy Code ) */}
+            {/* Coming Soon (Divine Energy Code) */}
             {product.isComingSoon && (
               <div className="p-4 rounded-2xl bg-spiritual-indigo/40 border border-white/5 space-y-4">
                 <div className="flex items-center gap-2 text-xs font-semibold text-amber-400">
@@ -167,7 +167,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
                   <span>Countdown to Launch</span>
                 </div>
                 
-                {/* Grid Cronômetro */}
+                {/* Timer Grid */}
                 <div className="grid grid-cols-4 gap-2 text-center">
                   <div className="bg-spiritual-dark/60 p-2.5 rounded-xl border border-white/5">
                     <span className="block text-lg font-bold text-slate-100">{timeLeft.days}</span>
@@ -187,7 +187,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
                   </div>
                 </div>
 
-                {/* Formulário Lista de Espera */}
+                {/* Waitlist Form */}
                 {emailSaved ? (
                   <div className="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-500/10 p-3 rounded-xl border border-emerald-500/25">
                     <CheckCircle className="w-4 h-4 shrink-0" />
@@ -216,7 +216,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
             )}
           </div>
 
-          {/* Ações principais na base */}
+          {/* Main Actions at Bottom */}
           <div className="pt-4 border-t border-white/5 flex gap-3">
             {product.audioUrl ? (
               <button
@@ -229,7 +229,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
             ) : product.id === 'chat-pastor' ? (
               <button
                 onClick={() => {
-                  onNavigateToTab('chat');
+                  navigate('/chat');
                   onClose();
                 }}
                 className="flex-1 py-3 rounded-xl gold-bg-gradient text-slate-900 font-bold hover:opacity-90 transition-opacity text-center"
@@ -239,12 +239,29 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
             ) : product.id === 'sacred-challenge' ? (
               <button
                 onClick={() => {
-                  onNavigateToTab('challenge');
+                  navigate('/challenge');
                   onClose();
                 }}
                 className="flex-1 py-3 rounded-xl gold-bg-gradient text-slate-900 font-bold hover:opacity-90 transition-opacity text-center"
               >
                 View My Challenge
+              </button>
+            ) : ['prosperity-frequencies', 'mental-frequencies', 'divine-accelerator', 'turbo-session', 'sanctuary-healing'].includes(product.id) ? (
+              <button
+                onClick={() => {
+                  const paths: Record<string, string> = {
+                    'prosperity-frequencies': '/experience/prosperity',
+                    'mental-frequencies': '/experience/mental',
+                    'divine-accelerator': '/experience/accelerator',
+                    'turbo-session': '/experience/turbo',
+                    'sanctuary-healing': '/experience/sanctuary'
+                  };
+                  navigate(paths[product.id]);
+                  onClose();
+                }}
+                className="flex-1 py-3 rounded-xl gold-bg-gradient text-slate-900 font-bold hover:scale-[1.01] active:scale-95 transition-all text-center shadow-[0_4px_15px_rgba(199,167,92,0.3)]"
+              >
+                Open Interactive Experience
               </button>
             ) : (
               <button

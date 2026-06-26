@@ -2,20 +2,16 @@ import React from 'react';
 import { Sparkles, ShieldAlert } from 'lucide-react';
 import { products } from '../data/products';
 import { ProductCard } from '../components/cards/ProductCard';
-import type { Product } from '../types';
+import { useLayoutContext } from '../hooks/useLayoutContext';
 
-interface PremiumProps {
-  onOpenDetails: (product: Product) => void;
-  onNavigateToTab: (tabId: string) => void;
-}
-
-export const Premium: React.FC<PremiumProps> = ({ onOpenDetails, onNavigateToTab }) => {
+export const Premium: React.FC = () => {
+  const { onOpenDetails } = useLayoutContext();
   const premiumProducts = products.filter((p) => p.section === 'premium');
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       
-      {/* Cabeçalho */}
+      {/* Header */}
       <div className="space-y-2">
         <div className="flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-purple-400" />
@@ -31,7 +27,7 @@ export const Premium: React.FC<PremiumProps> = ({ onOpenDetails, onNavigateToTab
         </p>
       </div>
 
-      {/* Caixa Informativa Premium */}
+      {/* Premium Info Box */}
       <div className="p-5 rounded-2xl bg-purple-500/10 border border-purple-500/25 flex items-start gap-4">
         <ShieldAlert className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
         <div className="space-y-1">
@@ -42,14 +38,13 @@ export const Premium: React.FC<PremiumProps> = ({ onOpenDetails, onNavigateToTab
         </div>
       </div>
 
-      {/* Grid de Produtos */}
+      {/* Products Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {premiumProducts.map((product) => (
           <ProductCard
             key={product.id}
             product={product}
             onOpenDetails={onOpenDetails}
-            onNavigateToTab={onNavigateToTab}
           />
         ))}
       </div>

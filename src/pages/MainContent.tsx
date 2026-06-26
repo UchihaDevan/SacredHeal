@@ -2,31 +2,24 @@ import React, { useState } from 'react';
 import { Play, Volume2, Radio, Shield } from 'lucide-react';
 import { products, frequenciesData, archangelsData } from '../data/products';
 import { ProductCard } from '../components/cards/ProductCard';
-import type { Product } from '../types';
 import { useAudioStore } from '../store/audioStore';
 import { playPureTone, stopPureTone } from '../services/audioService';
+import { useLayoutContext } from '../hooks/useLayoutContext';
 
-interface MainContentProps {
-  onOpenDetails: (product: Product) => void;
-  onNavigateToTab: (tabId: string) => void;
-}
-
-export const MainContent: React.FC<MainContentProps> = ({
-  onOpenDetails,
-  onNavigateToTab
-}) => {
+export const MainContent: React.FC = () => {
+  const { onOpenDetails } = useLayoutContext();
   const [subTab, setSubTab] = useState<'programs' | 'hz-vault' | 'archangels'>('programs');
   const playTrack = useAudioStore((state) => state.play);
   const currentTrack = useAudioStore((state) => state.currentTrack);
   const isPlaying = useAudioStore((state) => state.isPlaying);
   
-  // Estado para controlar qual tom puro Hz está gerando áudio local no momento
+  // State to control which pure Hz tone is currently generating local audio
   const [activePureHz, setActivePureHz] = useState<number | null>(null);
 
   const mainPrograms = products.filter((p) => p.section === 'main');
 
   const handlePlayTrack = (track: any) => {
-    // Para o tom puro se estiver tocando
+    // Stop pure tone if playing
     if (activePureHz) {
       stopPureTone();
       setActivePureHz(null);
@@ -48,7 +41,7 @@ export const MainContent: React.FC<MainContentProps> = ({
       stopPureTone();
       setActivePureHz(null);
     } else {
-      // Para o player de música se estiver tocando
+      // Pause music player if playing
       if (isPlaying) {
         useAudioStore.getState().pause();
       }
@@ -60,7 +53,7 @@ export const MainContent: React.FC<MainContentProps> = ({
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       
-      {/* Cabeçalho */}
+      {/* Header */}
       <div className="space-y-2">
         <h1 className="text-3xl md:text-4xl font-serif font-bold text-slate-100">
           Vault of <span className="gold-text-gradient font-serif">Sacred Frequencies</span>
@@ -70,7 +63,7 @@ export const MainContent: React.FC<MainContentProps> = ({
         </p>
       </div>
 
-      {/* Sub-Navegação interna (Abas) */}
+      {/* Internal Sub-Navigation (Tabs) */}
       <div className="flex border-b border-white/5 gap-2 scrollbar-none overflow-x-auto">
         <button
           onClick={() => setSubTab('programs')}
@@ -104,7 +97,7 @@ export const MainContent: React.FC<MainContentProps> = ({
         </button>
       </div>
 
-      {/* Exibição da Sub-Aba 1: Programas Completos */}
+      {/* Sub-Tab 1: Full Programs */}
       {subTab === 'programs' && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {mainPrograms.map((product) => (
@@ -112,13 +105,12 @@ export const MainContent: React.FC<MainContentProps> = ({
               key={product.id}
               product={product}
               onOpenDetails={onOpenDetails}
-              onNavigateToTab={onNavigateToTab}
             />
           ))}
         </div>
       )}
 
-      {/* Exibição da Sub-Aba 2: Cofre de Frequências Hz Individuais */}
+      {/* Sub-Tab 2: Individual Hz Frequencies Vault */}
       {subTab === 'hz-vault' && (
         <div className="space-y-4">
           <div className="p-4 rounded-2xl bg-spiritual-indigo/20 border border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -164,7 +156,7 @@ export const MainContent: React.FC<MainContentProps> = ({
                   </div>
 
                   <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
-                    {/* Botão Tom Puro */}
+                    {/* Pure Tone Button */}
                     <button
                       onClick={() => handleTogglePureTone(freq.hz)}
                       className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
@@ -176,7 +168,7 @@ export const MainContent: React.FC<MainContentProps> = ({
                       {isPurePlaying ? 'Mute Tone' : 'Play Pure Tone'}
                     </button>
 
-                    {/* Botão Play Faixa MVP */}
+                    {/* Play MVP Track Button */}
                     <button
                       onClick={() => handlePlayTrack(freq)}
                       className={`p-2.5 rounded-xl transition-all ${
@@ -195,7 +187,7 @@ export const MainContent: React.FC<MainContentProps> = ({
         </div>
       )}
 
-      {/* Exibição da Sub-Aba 3: Frequências dos Arcanjos */}
+      {/* Sub-Tab 3: Archangel Frequencies */}
       {subTab === 'archangels' && (
         <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -242,11 +234,11 @@ export const MainContent: React.FC<MainContentProps> = ({
                       onClick={() => handlePlayTrack(arch)}
                       className={`flex items-center justify-center p-2.5 rounded-xl transition-all ${
                         isPlayingThis
-                          ? 'bg-spiritual-gold text-slate-900 shadow-[0_0_15px_rgba(199,167,92,0.3)]Scale-105'
+                          ? 'bg-spiritual-gold text-slate-900 shadow-[0_0_15px_rgba(199,167,92,0.3)]'
                           : 'bg-spiritual-indigo/40 hover:bg-spiritual-gold text-slate-300 hover:text-slate-900'
                       }`}
                     >
-                      {isPlayingThis ? <Volume2 className="w-4.5 h-4.5" /> : <Play className="w-4.5 h-4.5 fill-current" />}
+                      {isPlayingThis ? <Volume2 className="w-4 h-4" /> : <Play className="w-4 h-4 fill-current" />}
                     </button>
                   </div>
                 </div>
