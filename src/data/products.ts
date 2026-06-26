@@ -87,6 +87,26 @@ export const products: Product[] = [
     duration: 600,
     isPremium: false
   },
+  {
+    id: 'emotional-frequencies',
+    name: 'Emotional Frequencies',
+    section: 'main',
+    description: 'Specialized vibrational alignment focused on releasing trauma, anxiety relief, and deep emotional healing.',
+    imageUrl: 'https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=600&q=80',
+    category: 'Emotional Balance',
+    tags: ['Trauma Release', 'Anxiety Relief', 'Solfeggio'],
+    benefits: [
+      'Release accumulated stress and emotional blocks',
+      'Support for trauma relief and inner peace',
+      'Solfeggio frequency of 396Hz (liberating guilt and fear)'
+    ],
+    hz: 396,
+    frequency: 396,
+    audioType: 'generated',
+    waveform: 'sine',
+    duration: 600,
+    isPremium: false
+  },
 
   // --- PREMIUM (5 Products) ---
   {

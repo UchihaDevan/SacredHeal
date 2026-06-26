@@ -79,7 +79,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     }
 
     // Default cases: play audio directly or open details modal
-    if (product.audioUrl) {
+    if (product.audioUrl || product.audioType === 'generated') {
       playTrack({
         id: product.id,
         name: product.name,
@@ -87,7 +87,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         duration: product.duration || 300,
         imageUrl: product.imageUrl,
         category: product.category,
-        hz: product.hz
+        hz: product.hz,
+        frequency: product.frequency,
+        waveform: product.waveform,
+        audioType: product.audioType
       });
       return;
     }
@@ -113,11 +116,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       'anointed-prayer-2': 'Pray Now',
       'premium-resources': 'Get Resources',
       'chat-pastor': 'Start Chat',
-      'sacred-challenge': 'View Streak'
+      'sacred-challenge': 'View Streak',
+      'emotional-frequencies': 'Start Healing'
     };
 
     if (product.id in labels) return labels[product.id];
-    return product.audioUrl ? 'Play Now' : 'Access';
+    return (product.audioUrl || product.audioType === 'generated') ? 'Play Now' : 'Access';
   };
 
   const renderActionIcon = () => {
@@ -145,9 +149,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       case 'divine-accelerator':
       case 'turbo-session':
       case 'sanctuary-healing':
+      case 'emotional-frequencies':
         return <Play className="w-4 h-4 fill-current" />;
       default:
-        return product.audioUrl ? <Play className="w-4 h-4 fill-current" /> : <ArrowRight className="w-4 h-4" />;
+        return (product.audioUrl || product.audioType === 'generated') ? <Play className="w-4 h-4 fill-current" /> : <ArrowRight className="w-4 h-4" />;
     }
   };
 

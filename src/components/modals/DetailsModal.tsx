@@ -64,7 +64,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
   };
 
   const handlePlayAction = () => {
-    if (product.audioUrl) {
+    if (product.audioUrl || product.audioType === 'generated') {
       playTrack({
         id: product.id,
         name: product.name,
@@ -72,7 +72,10 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
         duration: product.duration || 300,
         imageUrl: product.imageUrl,
         category: product.category,
-        hz: product.hz
+        hz: product.hz,
+        frequency: product.frequency,
+        waveform: product.waveform,
+        audioType: product.audioType
       });
       onClose();
     }
@@ -225,7 +228,7 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
 
           {/* Main Actions at Bottom */}
           <div className="pt-4 border-t border-white/5 flex gap-3">
-            {product.audioUrl ? (
+            {(product.audioUrl || product.audioType === 'generated') ? (
               <button
                 onClick={handlePlayAction}
                 className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl gold-bg-gradient text-slate-900 font-bold hover:scale-[1.01] active:scale-95 transition-all shadow-[0_4px_15px_rgba(199,167,92,0.3)]"
