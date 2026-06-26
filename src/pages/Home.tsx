@@ -544,6 +544,13 @@ export const Home: React.FC = () => {
                     />
                   </div>
                 </div>
+
+                <button
+                  onClick={() => navigate('/challenge')}
+                  className="w-full mt-2 py-2 px-4 rounded-xl text-xs font-bold bg-spiritual-gold/20 text-spiritual-gold border border-spiritual-gold/30 hover:bg-spiritual-gold hover:text-slate-900 transition-all cursor-pointer text-center block"
+                >
+                  Go to Challenge
+                </button>
               </div>
             ) : (
               <div className="space-y-3">

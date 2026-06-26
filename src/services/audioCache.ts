@@ -15,6 +15,7 @@ class AudioDatabase extends Dexie {
 
   constructor() {
     super('SacredHealAudioDB');
+    // @ts-ignore
     this.version(1).stores({
       audioCache: 'id, frequency, createdAt, expiresAt'
     });
@@ -41,7 +42,7 @@ export class AudioCacheManager {
       const cached = await db.audioCache
         .where('frequency')
         .equals(frequency)
-        .and(audio => audio.duration === duration)
+        .and((audio: CachedAudio) => audio.duration === duration)
         .first();
 
       if (cached && cached.expiresAt > Date.now()) {
@@ -109,6 +110,6 @@ export class AudioCacheManager {
    */
   static async getCacheSize(): Promise<number> {
     const audios = await db.audioCache.toArray();
-    return audios.reduce((total, audio) => total + audio.audioData.byteLength, 0);
+    return audios.reduce((total: number, audio: CachedAudio) => total + audio.audioData.byteLength, 0);
   }
 }

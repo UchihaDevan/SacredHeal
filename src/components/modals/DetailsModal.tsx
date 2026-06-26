@@ -4,6 +4,8 @@ import { X, Heart, Play, Mail, CheckCircle, Clock } from 'lucide-react';
 import type { Product } from '../../types';
 import { useUserStore } from '../../store/userStore';
 import { useAudioStore } from '../../store/audioStore';
+import { frequenciesData, archangelsData } from '../../data/products';
+import { dailyVerses } from '../../data/biblicalVerses';
 import { DivineCodePreview } from './DivineCodePreview';
 
 interface DetailsModalProps {
@@ -166,6 +168,119 @@ export const DetailsModal: React.FC<DetailsModalProps> = ({
                     </li>
                   ))}
                 </ul>
+              </div>
+            )}
+
+            {/* Healing Frequencies Vault Sub-Items */}
+            {product.id === 'healing-vault' && (
+              <div className="space-y-3 pt-2">
+                <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                  Frequências Disponíveis no Cofre:
+                </h4>
+                <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+                  {frequenciesData.map((freq) => (
+                    <div
+                      key={freq.id}
+                      className="flex items-center justify-between p-2.5 rounded-xl bg-slate-200/5 dark:bg-white/5 border border-slate-200/10 dark:border-white/5 hover:border-spiritual-gold/20 transition-all"
+                    >
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-serif font-bold text-slate-700 dark:text-slate-200">{freq.name}</span>
+                          <span className="px-1.5 py-0.5 rounded text-[9px] font-semibold bg-spiritual-gold/20 text-spiritual-gold">
+                            {freq.hz} Hz
+                          </span>
+                        </div>
+                        <p className="text-[10px] text-slate-550 dark:text-slate-400 truncate mt-0.5">{freq.description}</p>
+                      </div>
+                      <button
+                        onClick={() => {
+                          playTrack({
+                            id: freq.id,
+                            name: freq.name,
+                            url: freq.audioUrl,
+                            duration: freq.duration,
+                            imageUrl: freq.imageUrl,
+                            category: 'Cura',
+                            hz: freq.hz
+                          });
+                          onClose();
+                        }}
+                        className="p-1.5 rounded-lg bg-spiritual-indigo/40 hover:bg-spiritual-gold text-slate-400 hover:text-slate-900 transition-colors ml-2 cursor-pointer"
+                        title="Tocar Frequência"
+                      >
+                        <Play className="w-3.5 h-3.5 fill-current" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Archangel Frequencies Sub-Items */}
+            {product.id === 'archangel-frequencies' && (
+              <div className="space-y-3 pt-2">
+                <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                  As 7 Frequências Sagradas dos Arcanjos:
+                </h4>
+                <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+                  {archangelsData.map((arch) => (
+                    <div
+                      key={arch.id}
+                      className="flex items-center justify-between p-2.5 rounded-xl bg-slate-200/5 dark:bg-white/5 border border-slate-200/10 dark:border-white/5 hover:border-spiritual-gold/20 transition-all"
+                    >
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-serif font-bold text-slate-700 dark:text-slate-200">{arch.name}</span>
+                          <span className="px-1.5 py-0.5 rounded text-[9px] font-semibold bg-spiritual-gold/20 text-spiritual-gold">
+                            {arch.hz} Hz
+                          </span>
+                        </div>
+                        <p className="text-[10px] text-slate-550 dark:text-slate-400 truncate mt-0.5">{arch.role}</p>
+                      </div>
+                      <button
+                        onClick={() => {
+                          playTrack({
+                            id: arch.id,
+                            name: arch.name,
+                            url: arch.audioUrl,
+                            duration: 300,
+                            imageUrl: arch.imageUrl,
+                            category: 'Celestial',
+                            hz: arch.hz
+                          });
+                          onClose();
+                        }}
+                        className="p-1.5 rounded-lg bg-spiritual-indigo/40 hover:bg-spiritual-gold text-slate-400 hover:text-slate-900 transition-colors ml-2 cursor-pointer"
+                        title="Tocar Frequência"
+                      >
+                        <Play className="w-3.5 h-3.5 fill-current" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Daily Verses Sub-Items */}
+            {product.id === 'daily-verses' && (
+              <div className="space-y-3 pt-2">
+                <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                  Histórico de Mensagens Diárias:
+                </h4>
+                <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+                  {dailyVerses.map((verse) => (
+                    <div
+                      key={verse.id}
+                      className="p-2.5 rounded-xl bg-slate-200/5 dark:bg-white/5 border border-slate-200/10 dark:border-white/5 text-left"
+                    >
+                      <p className="text-xs font-serif italic text-slate-700 dark:text-slate-200">"{verse.verse}"</p>
+                      <div className="flex items-center justify-between mt-1 pt-1 border-t border-slate-200/5">
+                        <span className="text-[9px] font-semibold text-spiritual-gold font-serif">— {verse.reference}</span>
+                        <span className="text-[9px] text-slate-550">{verse.interpretation.slice(0, 45)}...</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
 
